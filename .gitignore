@@ -1,0 +1,10 @@
+# Created by .ignore support plugin (hsz.mobi)
+.gradle
+*.log
+*.iml
+.idea
+build
+out
+gen
+node_modules
+src/main/resources/static/app/bower_components/

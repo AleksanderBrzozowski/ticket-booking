@@ -1,0 +1,28 @@
+{
+  "name": "ticket-booking",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/abrzozo1/ticket-booking.git"
+  },
+  "author": "Aleksander Brzozowski",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://gitlab.com/abrzozo1/ticket-booking/issues"
+  },
+  "homepage": "https://gitlab.com/abrzozo1/ticket-booking#README",
+  "devDependencies": {
+    "bower": "~1.7.7",
+    "gulp": "~3.9.1",
+    "gulp-inject": "4.2.0",
+    "gulp-jade": "1.1.0",
+    "gulp-watch": "~4.3.11",
+    "gulp-angular-filesort": "~1.1.1"
+  },
+  "scripts": {
+    "postinstall": "bower install",
+    "prestart": "npm install"
+  }
+}

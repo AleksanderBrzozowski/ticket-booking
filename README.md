@@ -1,0 +1,30 @@
+# 1. Frameworki / narzędzia
+## Backend
+* [Spring Boot v1.5.3](http://projects.spring.io/spring-boot/)
+* [Kotlin v1.1.2](https://kotlinlang.org/)
+* [Gradle](https://gradle.org/)
+
+## Frontend
+* [AngularJS 1.6](https://angularjs.org/)
+* [Npm](https://www.npmjs.com/)
+* [Bower](https://bower.io/)
+* [Gulp](http://gulpjs.com/)
+* [Jade](https://www.npmjs.com/package/jade)
+
+# 2. Uruchomienie projektu
+## Baza danych
+TODO
+
+## Backend
+Backend uruchamiamy przy użyciu taska gradlowego `bootRun` (`./gradlew bootRun`).
+Domyślnie wybrany jest port 8080. 
+
+## Frontend
+Do uruchomienia frontendu potrzebujemy npm. Instalujemy globalnie gulpa poprzez polecenie 
+`npm install -g gulp`. Następnie pobieramy zależności wywołując `npm install`. 
+Następnie uruchamiamy gulp'a, który stworzy nam pliki `.html` z plików `.jade` oraz wstrzyknie
+skrypty `.js` oraz pliki `.css` do `index.html`. Uruchamiamy gulpa poprzez polecenie `gulp`.
+Podczas developmentu, aby gulp obserwował i reagował na nasze zmiany w plikach uruchamiamy task
+`dev` (`gulp dev`) oraz wyłączamy cache w naszej przeglądarce. 
+
+    
