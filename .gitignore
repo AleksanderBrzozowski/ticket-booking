@@ -7,4 +7,4 @@ build
 out
 gen
 node_modules
-src/main/resources/static/app/bower_components/
+src/main/resources/static/lib
