@@ -7,7 +7,7 @@
 
     restangularConfig.$inject = ['RestangularProvider'];
     function restangularConfig(RestangularProvider) {
-        RestangularProvider.setBaseUrl = '/api';
+        RestangularProvider.setBaseUrl('/api');
     }
 
     translateConfig.$inject = ['$translateProvider'];
