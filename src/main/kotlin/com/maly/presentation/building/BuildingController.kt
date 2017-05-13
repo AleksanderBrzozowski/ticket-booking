@@ -1,9 +1,11 @@
 package com.maly.presentation.building
 
+import com.maly.domain.building.Building
 import com.maly.domain.building.BuildingService
 import com.maly.presentation.building.BuildingController.Companion.BASE_PATH
 import com.maly.system.Api
 import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 
 /**
@@ -20,8 +22,11 @@ class BuildingController(private val buildingService: BuildingService) {
     }
 
     @RequestMapping(CITY_SORTED_PATH)
-    fun citySortedBuildings(): BuildingListModel {
-        return buildingService.findAllGroupedByType()
-                .let { BuildingListModel.map(cinemas = it.cinemas, theatres = it.theatres) }
+    fun getBuildings(@RequestParam type: Building.Type): List<CitySortedBuildingsModel> {
+        return buildingService.findAllBuildings(type)
+                .groupBy { it.address.city }
+                .map { (city, buildings) ->
+                    CitySortedBuildingsModel(city = city, buildings = buildings.map { BuildingModel.map(it) })
+                }
     }
 }

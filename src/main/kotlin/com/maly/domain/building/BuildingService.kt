@@ -19,4 +19,8 @@ class BuildingService(private val buildingRepository: BuildingRepository) {
 
         return TypeBuildingDto(theatres = theatres, cinemas = cinemas)
     }
+
+    fun findAllBuildings(type: Building.Type): List<Building> {
+        return buildingRepository.findAllByType(type)
+    }
 }
