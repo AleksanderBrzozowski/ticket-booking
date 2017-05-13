@@ -2,6 +2,7 @@ package com.maly.presentation.building
 
 import com.maly.domain.building.BuildingService
 import com.maly.presentation.building.BuildingController.Companion.BASE_PATH
+import com.maly.system.Api
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
@@ -10,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController
  */
 
 @RestController
-@RequestMapping(BASE_PATH)
+@RequestMapping("${Api.BASE_URL}$BASE_PATH")
 class BuildingController(private val buildingService: BuildingService) {
 
     companion object {
