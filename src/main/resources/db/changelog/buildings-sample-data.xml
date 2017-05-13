@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <changeSet id="sample-buildings-data" author="abrzozowski">
+        <sql>
+            INSERT INTO BUILDINGS (NAME, CITY, STREET, HOUSE_NUMBER, X, Y, TYPE)
+            VALUES ('Cinema City', 'Warszawa', 'Ostrobramska', '75c', '', '', 'CINEMA');
+            INSERT INTO BUILDINGS (NAME, CITY, STREET, HOUSE_NUMBER, X, Y, TYPE)
+            VALUES ('Kino Luna', 'Warszawa', 'Marszałkowska', '28', '', '', 'CINEMA');
+            INSERT INTO BUILDINGS (NAME, CITY, STREET, HOUSE_NUMBER, X, Y, TYPE)
+            VALUES ('Kino Iluzjon', 'Warszawa', 'Narbutta', '50A', '', '', 'CINEMA');
+            INSERT INTO BUILDINGS (NAME, CITY, STREET, HOUSE_NUMBER, X, Y, TYPE)
+            VALUES ('Kino Nowe Horyzonty', 'Wrocław', 'Kazimierza Wielkiego', '19a-21', '', '', 'CINEMA');
+            INSERT INTO BUILDINGS (NAME, CITY, STREET, HOUSE_NUMBER, X, Y, TYPE)
+            VALUES ('Helios Wrocław Magnolia Park', 'Wrocław', 'Legnicka', '58', '', '', 'CINEMA');
+            INSERT INTO BUILDINGS (NAME, CITY, STREET, HOUSE_NUMBER, X, Y, TYPE)
+            VALUES ('Kino Cinema City Krewetka', 'Gdańsk', ' Karmelicka', '1', '', '', 'CINEMA');
+            INSERT INTO BUILDINGS (NAME, CITY, STREET, HOUSE_NUMBER, X, Y, TYPE)
+            VALUES ('Teatr Komedia', 'Warszawa', ' Słowackiego', '19a', '', '', 'THEATRE');
+            INSERT INTO BUILDINGS (NAME, CITY, STREET, HOUSE_NUMBER, X, Y, TYPE)
+            VALUES ('Teatr Syrena', 'Warszawa', ' Litewska', '3', '', '', 'THEATRE');
+            INSERT INTO BUILDINGS (NAME, CITY, STREET, HOUSE_NUMBER, X, Y, TYPE)
+            VALUES ('Teatr Narodowy', 'Warszawa', ' plac Teatralny', '3', '', '', 'THEATRE');
+        </sql>
+    </changeSet>
+</databaseChangeLog>

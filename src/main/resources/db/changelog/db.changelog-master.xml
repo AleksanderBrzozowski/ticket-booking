@@ -2,5 +2,30 @@
 <databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <changeSet id="create-building-table" author="abrzozowski">
+        <createTable tableName="buildings">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="NVARCHAR(64)">
+                    <constraints nullable="false"/>
+            </column>
+            <column name="city" type="NVARCHAR(32)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="street" type="NVARCHAR(64)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="house_number" type="NVARCHAR(10)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="x" type="NVARCHAR(16)"/>
+            <column name="y" type="NVARCHAR(16)"/>
+            <column name="type" type="NVARCHAR(16)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
 
+    <include file="db/changelog/buildings-sample-data.xml"/>
 </databaseChangeLog>
