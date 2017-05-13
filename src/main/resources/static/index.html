@@ -7,28 +7,34 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="stylesheet" href="lib/bower/bootstrap-css-only/css/bootstrap-theme.css">
-    <link rel="stylesheet" href="lib/bower/bootstrap-css-only/css/bootstrap-theme.min.css">
-    <link rel="stylesheet" href="lib/bower/bootstrap-css-only/css/bootstrap.css">
     <link rel="stylesheet" href="lib/bower/bootstrap-css-only/css/bootstrap.min.css">
 </head>
 <body>
 
+    <div navbar></div>
     <div ui-view></div>
 
     <script src="lib/bower/angular/angular.min.js"></script>
     <script src="lib/bower/angular-ui-router/release/angular-ui-router.min.js"></script>
     <script src="lib/bower/angular-translate/angular-translate.min.js"></script>
+    <script src="lib/bower/angular-translate/angular-translate.min.js"></script>
     <script src="lib/bower/lodash/dist/lodash.min.js"></script>
     <script src="lib/bower/restangular/dist/restangular.js"></script>
+    <script src="lib/bower/angular-bootstrap/ui-bootstrap-tpls.js"></script>
 
     <!-- inject:js -->
+    <script src="app/directive/navbar/navbar.module.js"></script>
+    <script src="app/directive/navbar/navbar.directive.js"></script>
+    <script src="app/directive/navbar/navbar.controller.js"></script>
     <script src="app/film/film.module.js"></script>
     <script src="app/film/film.route.js"></script>
     <script src="app/film/film.controller.js"></script>
     <script src="app/core/core.module.js"></script>
+    <script src="app/i18n/pl.js"></script>
     <script src="app/core/core.route.js"></script>
     <script src="app/core/core.config.js"></script>
+    <script src="app/building/building.module.js"></script>
+    <script src="app/building/building.service.js"></script>
     <script src="app/app.module.js"></script>
     <!-- endinject -->
 </body>

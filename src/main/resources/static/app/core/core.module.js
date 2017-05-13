@@ -4,6 +4,7 @@
     angular.module('core', [
         'restangular',
         'pascalprecht.translate',
-        'ui.router'
+        'ui.router',
+        'ui.bootstrap'
     ]);
 })();
