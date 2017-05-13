@@ -8,3 +8,4 @@ out
 gen
 node_modules
 src/main/resources/static/lib
+db
