@@ -7,10 +7,14 @@
     translation.$inject = ['$translateProvider'];
     function translation($translateProvider) {
         $translateProvider.translations('pl', {
-            NAVBAR:{
-                SEARCH: 'Szukaj filmu',
+            NAVBAR: {
+                SEARCH: 'Szukaj spektaklu',
                 CINEMAS: 'Kina',
                 THEATRES: 'Teatry'
+            },
+            HOME: {
+                TITLE: 'Aplikacja do kupowania biletów',
+                DESCRIPTION: 'Znajdź teatr lub kino, wybierz spektakl i zamów bilety już dziś!'
             }
         });
     }

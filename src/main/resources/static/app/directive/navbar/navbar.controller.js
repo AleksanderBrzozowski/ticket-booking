@@ -21,7 +21,7 @@
         }
 
         function goHome() {
-            $state.go('')
+            $state.go('home')
         }
 
         function goToBuilding(type) {

@@ -5,6 +5,7 @@
         'core',
         'film',
         'navbar',
-        'building'
+        'building',
+        'home'
     ]);
 })();
