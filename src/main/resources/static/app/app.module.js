@@ -3,6 +3,8 @@
 
     angular.module('app', [
         'core',
-        'film'
+        'film',
+        'navbar',
+        'building'
     ]);
 })();

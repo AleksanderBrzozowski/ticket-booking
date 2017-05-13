@@ -1,0 +1,18 @@
+nav.navbar.navbar-default
+    .container-fluid
+        .navbar-header
+            a.navbar-brand(ng-click="vm.goHome()")
+                i.glyphicon.glyphicon-film
+        .collapse.navbar-collapse
+            ul.nav.navbar-nav
+                li.nav-item
+                    a(href="" ng-click="vm.goTheatres()") {{'NAVBAR.THEATRES' | translate}}
+                li.nav-item
+                    a(href="" ng-click="vm.goCinemas()") {{'NAVBAR.CINEMAS' | translate}}
+            .col-md-6
+                form.navbar-form
+                    .input-group
+                        input.input.form-control(type="text" placeholder="{{'NAVBAR.SEARCH' | translate}}")
+                        .input-group-btn
+                            button.btn.btn-default(ng-disabled="true")
+                                i.glyphicon.glyphicon-search

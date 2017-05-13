@@ -6,6 +6,6 @@
 
     routeConfig.$inject = ['$urlRouterProvider'];
     function routeConfig($urlRouterProvider) {
-        $urlRouterProvider.otherwise('/film');
+        $urlRouterProvider.otherwise('/');
     }
 })();
