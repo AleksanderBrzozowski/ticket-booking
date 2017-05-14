@@ -6,7 +6,7 @@
 
     routeConfig.$inject = ['$stateProvider'];
     function routeConfig($stateProvider) {
-        $stateProvider.state('home', {
+        $stateProvider.state('index.home', {
             url: '/home',
             templateUrl: 'app/home/main.html'
         })

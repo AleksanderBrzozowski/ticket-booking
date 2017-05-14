@@ -11,7 +11,7 @@
 </head>
 <body>
 
-    <div navbar></div>
+    <div ui-view="navbar"></div>
     <div ui-view></div>
 
     <script src="lib/bower/angular/angular.min.js"></script>
@@ -23,22 +23,20 @@
     <script src="lib/bower/angular-bootstrap/ui-bootstrap-tpls.js"></script>
 
     <!-- inject:js -->
-    <script src="app/directive/navbar/navbar.module.js"></script>
-    <script src="app/directive/navbar/navbar.directive.js"></script>
-    <script src="app/directive/navbar/navbar.controller.js"></script>
-    <script src="app/core/core.module.js"></script>
-    <script src="app/i18n/pl.js"></script>
+    <script src="app/navbar/navbar.module.js"></script>
+    <script src="app/navbar/navbar.controller.js"></script>
+    <script src="app/index/index.module.js"></script>
+    <script src="app/index/index.route.js"></script>
     <script src="app/home/home.module.js"></script>
     <script src="app/home/home.route.js"></script>
-    <script src="app/film/film.module.js"></script>
-    <script src="app/film/film.route.js"></script>
-    <script src="app/film/film.controller.js"></script>
+    <script src="app/core/core.module.js"></script>
+    <script src="app/i18n/pl.js"></script>
+    <script src="app/core/core.route.js"></script>
+    <script src="app/core/core.config.js"></script>
     <script src="app/building/building.module.js"></script>
     <script src="app/building/building.service.js"></script>
     <script src="app/building/building.route.js"></script>
     <script src="app/building/building.controller.js"></script>
-    <script src="app/core/core.route.js"></script>
-    <script src="app/core/core.config.js"></script>
     <script src="app/app.module.js"></script>
     <!-- endinject -->
 </body>

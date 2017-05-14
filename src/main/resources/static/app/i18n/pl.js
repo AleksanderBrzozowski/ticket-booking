@@ -10,7 +10,8 @@
             NAVBAR: {
                 SEARCH: 'Szukaj spektaklu',
                 CINEMAS: 'Kina',
-                THEATRES: 'Teatry'
+                THEATRES: 'Teatry',
+                HOME: 'Strona główna'
             },
             HOME: {
                 TITLE: 'Aplikacja do kupowania biletów',

@@ -1,14 +1,12 @@
 nav.navbar.navbar-default
     .container-fluid
         .navbar-header
-            a.navbar-brand(href="" ng-click="vm.goHome()")
+            a.navbar-brand
                 i.glyphicon.glyphicon-film
         .collapse.navbar-collapse
             ul.nav.navbar-nav
-                li.nav-item
-                    a(href="" ng-click="vm.goTheatres()") {{'NAVBAR.THEATRES' | translate}}
-                li.nav-item
-                    a(href="" ng-click="vm.goCinemas()") {{'NAVBAR.CINEMAS' | translate}}
+                li.nav-item(ng-repeat="bar in vm.bars" ng-class="{'active': bar.active}")
+                    a(href="" ng-click="vm.menuBarClick(bar)") {{bar.name | translate}}
             .col-md-6
                 form.navbar-form
                     .input-group

@@ -3,8 +3,7 @@
 
     angular.module('app', [
         'core',
-        'film',
-        'navbar',
+        'index',
         'building',
         'home'
     ]);
