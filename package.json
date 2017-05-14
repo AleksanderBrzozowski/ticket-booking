@@ -22,7 +22,7 @@
     "gulp-angular-filesort": "~1.1.1"
   },
   "scripts": {
-    "postinstall": "bower install",
+    "postinstall": "bower install && gulp default",
     "prestart": "npm install"
   }
 }
