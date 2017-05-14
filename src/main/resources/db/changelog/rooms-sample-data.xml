@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <changeSet id="sample-rooms-data" author="abrzozowski">
+        <sql>
+            -- cinema-city
+            INSERT INTO ROOMS (number, name, BUILDING_ID)
+                SELECT
+                    1,
+                    NULL,
+                    id
+                FROM BUILDINGS
+                WHERE STREET = 'Ostrobramska' AND NAME = 'Cinema City';
+            INSERT INTO ROOMS (number, name, BUILDING_ID)
+                SELECT
+                    2,
+                    NULL,
+                    id
+                FROM BUILDINGS
+                WHERE STREET = 'Ostrobramska' AND NAME = 'Cinema City';
+            INSERT INTO ROOMS (number, name, BUILDING_ID)
+                SELECT
+                    3,
+                    NULL,
+                    id
+                FROM BUILDINGS
+                WHERE STREET = 'Ostrobramska' AND NAME = 'Cinema City';
+            INSERT INTO ROOMS (number, name, BUILDING_ID)
+                SELECT
+                    4,
+                    NULL,
+                    id
+                FROM BUILDINGS
+                WHERE STREET = 'Ostrobramska' AND NAME = 'Cinema City';
+            INSERT INTO ROOMS (number, name, BUILDING_ID)
+                SELECT
+                    5,
+                    NULL,
+                    id
+                FROM BUILDINGS
+                WHERE STREET = 'Ostrobramska' AND NAME = 'Cinema City';
+            INSERT INTO ROOMS (number, name, BUILDING_ID)
+                SELECT
+                    6,
+                    NULL,
+                    id
+                FROM BUILDINGS
+                WHERE STREET = 'Ostrobramska' AND NAME = 'Cinema City';
+            INSERT INTO ROOMS (number, name, BUILDING_ID)
+                SELECT
+                    7,
+                    NULL,
+                    id
+                FROM BUILDINGS
+                WHERE STREET = 'Ostrobramska' AND NAME = 'Cinema City';
+
+        </sql>
+    </changeSet>
+</databaseChangeLog>

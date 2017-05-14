@@ -28,4 +28,24 @@
     </changeSet>
 
     <include file="db/changelog/buildings-sample-data.xml"/>
+
+    <changeSet id="create-rooms-table" author="abrzozowski">
+        <createTable tableName="rooms">
+            <column name="ID" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" primaryKeyName="Room_PK"/>
+            </column>
+            <column name="number" type="INT">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="name" type="NVARCHAR(32)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="building_ID" type="BIGINT">
+                <constraints foreignKeyName="room_building_FK" referencedTableName="buildings" referencedColumnNames="id" nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <include file="db/changelog/rooms-sample-data.xml"/>
+
 </databaseChangeLog>
