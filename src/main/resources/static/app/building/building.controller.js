@@ -4,10 +4,9 @@
     angular.module('building')
         .controller('BuildingController', BuildingController);
 
-    BuildingController.$inject = ['$stateParams', 'buildingsJson'];
-    function BuildingController($stateParams, buildingsJson) {
+    BuildingController.$inject = ['buildingsJson'];
+    function BuildingController(buildingsJson) {
         var vm = this;
-        vm.type = $stateParams.type;
 
         vm.chosenCityIndex = -1;
         vm.cities = buildingsJson.map(function (building) {

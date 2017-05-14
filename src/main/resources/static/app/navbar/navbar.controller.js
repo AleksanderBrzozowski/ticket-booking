@@ -4,9 +4,11 @@
     angular.module('navbar')
         .controller('NavbarController', NavbarController);
 
-    NavbarController.$inject = ['$state'];
-    function NavbarController($state) {
+    NavbarController.$inject = ['$state', '$scope'];
+    function NavbarController($state, $scope) {
         var vm = this;
+
+        $scope.navbarCollapsed = true;
 
         vm.bars = [
             createBar('NAVBAR.HOME', 'index.home'),

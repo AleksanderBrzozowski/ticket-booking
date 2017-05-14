@@ -1,10 +1,10 @@
 div.container
     .col-md-3
-        p Wybierz miasto
+        p {{'BUILDING.CHOOSE_CITY' | translate}}
         ul.list-group
             a.list-group-item(href="" ng-repeat="(cityIndex, city) in vm.cities" ng-class="{'active': cityIndex == vm.chosenCityIndex}" ng-click="vm.chooseCity(cityIndex)") {{city}}
     .col-md-3(ng-if="vm.chosenCityIndex != -1")
-        p Wybierz budynek
+        p {{'BUILDING.CHOOSE_BUILDING' | translate}}
         ul.list-group
             a.list-group-item(href="" ng-repeat="(buildingIndex, building) in vm.buildings" ng-class="{'active': buildingIndex == vm.chosenBuildingIndex}" ng-click="vm.chooseBuilding(buildingIndex)") {{building.name}}
 

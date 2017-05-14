@@ -1,14 +1,18 @@
 nav.navbar.navbar-default
     .container-fluid
         .navbar-header
+            button.navbar-toggle.collapsed(type="button" ng-click="navbarCollapsed = !navbarCollapsed")
+                span.sr-only {{NAVBAR.TOGGLE_NAVIGATION | translate}}
+                span.icon-bar
+                span.icon-bar
+                span.icon-bar
             a.navbar-brand
                 i.glyphicon.glyphicon-film
-        .collapse.navbar-collapse
+        .collapse.navbar-collapse(uib-collapse="navbarCollapsed")
             ul.nav.navbar-nav
-                li.nav-item(ng-repeat="bar in vm.bars" ng-class="{'active': bar.active}")
-                    a(href="" ng-click="vm.menuBarClick(bar)") {{bar.name | translate}}
-            .col-md-6
-                form.navbar-form
+                li(ng-repeat="bar in vm.bars" ng-class="{'active': bar.active}")
+                    a(href="" ng-click="vm.menuBarClick(bar); $scope.navbarCollapsed = true;") {{bar.name | translate}}
+                form.navbar-form.navbar-left
                     .input-group
                         input.input.form-control(type="text" placeholder="{{'NAVBAR.SEARCH' | translate}}")
                         .input-group-btn
