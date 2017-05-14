@@ -49,4 +49,5 @@ dependencies {
     compile("org.jetbrains.kotlin:kotlin-reflect:${kotlinVersion}")
     compile('com.h2database:h2:1.4.192')
     testCompile('org.springframework.boot:spring-boot-starter-test')
+    runtime('org.postgresql:postgresql')
 }
