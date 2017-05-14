@@ -15,13 +15,13 @@
             INSERT INTO BUILDINGS (NAME, CITY, STREET, HOUSE_NUMBER, X, Y, TYPE)
             VALUES ('Helios Wrocław Magnolia Park', 'Wrocław', 'Legnicka', '58', '', '', 'CINEMA');
             INSERT INTO BUILDINGS (NAME, CITY, STREET, HOUSE_NUMBER, X, Y, TYPE)
-            VALUES ('Kino Cinema City Krewetka', 'Gdańsk', ' Karmelicka', '1', '', '', 'CINEMA');
+            VALUES ('Kino Cinema City Krewetka', 'Gdańsk', 'Karmelicka', '1', '', '', 'CINEMA');
             INSERT INTO BUILDINGS (NAME, CITY, STREET, HOUSE_NUMBER, X, Y, TYPE)
-            VALUES ('Teatr Komedia', 'Warszawa', ' Słowackiego', '19a', '', '', 'THEATRE');
+            VALUES ('Teatr Komedia', 'Warszawa', 'Słowackiego', '19a', '', '', 'THEATRE');
             INSERT INTO BUILDINGS (NAME, CITY, STREET, HOUSE_NUMBER, X, Y, TYPE)
-            VALUES ('Teatr Syrena', 'Warszawa', ' Litewska', '3', '', '', 'THEATRE');
+            VALUES ('Teatr Syrena', 'Warszawa', 'Litewska', '3', '', '', 'THEATRE');
             INSERT INTO BUILDINGS (NAME, CITY, STREET, HOUSE_NUMBER, X, Y, TYPE)
-            VALUES ('Teatr Narodowy', 'Warszawa', ' plac Teatralny', '3', '', '', 'THEATRE');
+            VALUES ('Teatr Narodowy', 'Warszawa', 'plac Teatralny', '3', '', '', 'THEATRE');
         </sql>
     </changeSet>
 </databaseChangeLog>
