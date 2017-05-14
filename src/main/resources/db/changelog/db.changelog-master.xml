@@ -35,7 +35,7 @@
                 <constraints primaryKey="true" primaryKeyName="Room_PK"/>
             </column>
             <column name="number" type="INT">
-                <constraints nullable="false" unique="true"/>
+                <constraints nullable="false"/>
             </column>
             <column name="name" type="NVARCHAR(32)">
                 <constraints nullable="true"/>
@@ -44,6 +44,8 @@
                 <constraints foreignKeyName="room_building_FK" referencedTableName="buildings" referencedColumnNames="id" nullable="false"/>
             </column>
         </createTable>
+
+        <addUniqueConstraint tableName="rooms" columnNames="building_ID, number"/>
     </changeSet>
 
     <include file="db/changelog/rooms-sample-data.xml"/>
