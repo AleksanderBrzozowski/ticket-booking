@@ -13,7 +13,7 @@
 
 # 2. Uruchomienie projektu
 ## Baza danych
-TODO
+W procesie developmentu używana jest baza H2. Na heroku pracuje baza PostgreSQL. Na produkcji uruchomiona jest baza SQL Server.
 
 ## Backend
 Backend uruchamiamy przy użyciu taska gradlowego `bootRun` (`./gradlew bootRun`).
