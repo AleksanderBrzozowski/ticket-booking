@@ -5,49 +5,49 @@
     <changeSet id="sample-rooms-data" author="abrzozowski">
         <sql>
             -- cinema-city
-            INSERT INTO ROOMS (number, name, "building_ID")
+            INSERT INTO ROOMS (number, name, building_id)
                 SELECT
                     1,
                     NULL,
                     id
                 FROM BUILDINGS
                 WHERE STREET = 'Ostrobramska' AND NAME = 'Cinema City';
-            INSERT INTO ROOMS (number, name, "building_ID")
+            INSERT INTO ROOMS (number, name, building_id)
                 SELECT
                     2,
                     NULL,
                     id
                 FROM BUILDINGS
                 WHERE STREET = 'Ostrobramska' AND NAME = 'Cinema City';
-            INSERT INTO ROOMS (number, name, "building_ID")
+            INSERT INTO ROOMS (number, name, building_id)
                 SELECT
                     3,
                     NULL,
                     id
                 FROM BUILDINGS
                 WHERE STREET = 'Ostrobramska' AND NAME = 'Cinema City';
-            INSERT INTO ROOMS (number, name, "building_ID")
+            INSERT INTO ROOMS (number, name, building_id)
                 SELECT
                     4,
                     NULL,
                     id
                 FROM BUILDINGS
                 WHERE STREET = 'Ostrobramska' AND NAME = 'Cinema City';
-            INSERT INTO ROOMS (number, name, "building_ID")
+            INSERT INTO ROOMS (number, name, building_id)
                 SELECT
                     5,
                     NULL,
                     id
                 FROM BUILDINGS
                 WHERE STREET = 'Ostrobramska' AND NAME = 'Cinema City';
-            INSERT INTO ROOMS (number, name, "building_ID")
+            INSERT INTO ROOMS (number, name, building_id)
                 SELECT
                     6,
                     NULL,
                     id
                 FROM BUILDINGS
                 WHERE STREET = 'Ostrobramska' AND NAME = 'Cinema City';
-            INSERT INTO ROOMS (number, name, "building_ID")
+            INSERT INTO ROOMS (number, name, building_id)
                 SELECT
                     7,
                     NULL,
@@ -56,49 +56,49 @@
                 WHERE STREET = 'Ostrobramska' AND NAME = 'Cinema City';
 
             -- kino iluzjon
-            INSERT INTO ROOMS (number, name, "building_ID")
+            INSERT INTO ROOMS (number, name, building_id)
                 SELECT
                     1,
                     NULL,
                     id
                 FROM BUILDINGS
                 WHERE STREET = 'Narbutta' AND NAME = 'Kino Iluzjon';
-            INSERT INTO ROOMS (number, name, "building_ID")
+            INSERT INTO ROOMS (number, name, building_id)
                 SELECT
                     2,
                     NULL,
                     id
                 FROM BUILDINGS
                 WHERE STREET = 'Narbutta' AND NAME = 'Kino Iluzjon';
-            INSERT INTO ROOMS (number, name, "building_ID")
+            INSERT INTO ROOMS (number, name, building_id)
                 SELECT
                     3,
                     NULL,
                     id
                 FROM BUILDINGS
                 WHERE STREET = 'Narbutta' AND NAME = 'Kino Iluzjon';
-            INSERT INTO ROOMS (number, name, "building_ID")
+            INSERT INTO ROOMS (number, name, building_id)
                 SELECT
                     4,
                     NULL,
                     id
                 FROM BUILDINGS
                 WHERE STREET = 'Narbutta' AND NAME = 'Kino Iluzjon';
-            INSERT INTO ROOMS (number, name, "building_ID")
+            INSERT INTO ROOMS (number, name, building_id)
                 SELECT
                     5,
                     NULL,
                     id
                 FROM BUILDINGS
                 WHERE STREET = 'Narbutta' AND NAME = 'Kino Iluzjon';
-            INSERT INTO ROOMS (number, name, "building_ID")
+            INSERT INTO ROOMS (number, name, building_id)
                 SELECT
                     6,
                     NULL,
                     id
                 FROM BUILDINGS
                 WHERE STREET = 'Narbutta' AND NAME = 'Kino Iluzjon';
-            INSERT INTO ROOMS (number, name, "building_ID")
+            INSERT INTO ROOMS (number, name, building_id)
                 SELECT
                     7,
                     NULL,
@@ -107,49 +107,49 @@
                 WHERE STREET = 'Narbutta' AND NAME = 'Kino Iluzjon';
 
             --kino luna
-            INSERT INTO ROOMS (number, name, "building_ID")
+            INSERT INTO ROOMS (number, name, building_id)
                 SELECT
                     1,
                     NULL,
                     id
                 FROM BUILDINGS
                 WHERE STREET = 'Marszałkowska' AND NAME = 'Kino Luna';
-            INSERT INTO ROOMS (number, name, "building_ID")
+            INSERT INTO ROOMS (number, name, building_id)
                 SELECT
                     2,
                     NULL,
                     id
                 FROM BUILDINGS
                 WHERE STREET = 'Marszałkowska' AND NAME = 'Kino Luna';
-            INSERT INTO ROOMS (number, name, "building_ID")
+            INSERT INTO ROOMS (number, name, building_id)
                 SELECT
                     3,
                     NULL,
                     id
                 FROM BUILDINGS
                 WHERE STREET = 'Marszałkowska' AND NAME = 'Kino Luna';
-            INSERT INTO ROOMS (number, name, "building_ID")
+            INSERT INTO ROOMS (number, name, building_id)
                 SELECT
                     4,
                     NULL,
                     id
                 FROM BUILDINGS
                 WHERE STREET = 'Marszałkowska' AND NAME = 'Kino Luna';
-            INSERT INTO ROOMS (number, name, "building_ID")
+            INSERT INTO ROOMS (number, name, building_id)
                 SELECT
                     5,
                     NULL,
                     id
                 FROM BUILDINGS
                 WHERE STREET = 'Marszałkowska' AND NAME = 'Kino Luna';
-            INSERT INTO ROOMS (number, name, "building_ID")
+            INSERT INTO ROOMS (number, name, building_id)
                 SELECT
                     6,
                     NULL,
                     id
                 FROM BUILDINGS
                 WHERE STREET = 'Marszałkowska' AND NAME = 'Kino Luna';
-            INSERT INTO ROOMS (number, name, "building_ID")
+            INSERT INTO ROOMS (number, name, building_id)
                 SELECT
                     7,
                     NULL,
@@ -158,35 +158,35 @@
                 WHERE STREET = 'Marszałkowska' AND NAME = 'Kino Luna';
 
             --teatr wielki narodowy
-            INSERT INTO ROOMS (number, name, "building_ID")
+            INSERT INTO ROOMS (number, name, building_id)
                 SELECT
                     1,
                     'Sala Moniuszki',
                     id
                 FROM BUILDINGS
                 WHERE STREET = 'plac Teatralny' AND NAME = 'Teatr Narodowy';
-            INSERT INTO ROOMS (number, name, "building_ID")
+            INSERT INTO ROOMS (number, name, building_id)
                 SELECT
                     2,
                     'Sala Młynarskiego',
                     id
                 FROM BUILDINGS
                 WHERE STREET = 'plac Teatralny' AND NAME = 'Teatr Narodowy';
-            INSERT INTO ROOMS (number, name, "building_ID")
+            INSERT INTO ROOMS (number, name, building_id)
                 SELECT
                     3,
                     'Sala Redutowa',
                     id
                 FROM BUILDINGS
                 WHERE STREET = 'plac Teatralny' AND NAME = 'Teatr Narodowy';
-            INSERT INTO ROOMS (number, name, "building_ID")
+            INSERT INTO ROOMS (number, name, building_id)
                 SELECT
                     4,
                     'Sala Redutowa',
                     id
                 FROM BUILDINGS
                 WHERE STREET = 'plac Teatralny' AND NAME = 'Teatr Narodowy';
-            INSERT INTO ROOMS (number, name, "building_ID")
+            INSERT INTO ROOMS (number, name, building_id)
                 SELECT
                     5,
                     'Sala Redutowa',
@@ -195,28 +195,28 @@
                 WHERE STREET = 'plac Teatralny' AND NAME = 'Teatr Narodowy';
 
             --Kino Nowe Horyzonty
-            INSERT INTO ROOMS (number, name, "building_ID")
+            INSERT INTO ROOMS (number, name, building_id)
                 SELECT
                     1,
                     NULL,
                     id
                 FROM BUILDINGS
                 WHERE STREET = 'Kazimierza Wielkiego' AND NAME = 'Kino Nowe Horyzonty';
-            INSERT INTO ROOMS (number, name, "building_ID")
+            INSERT INTO ROOMS (number, name, building_id)
                 SELECT
                     2,
                     NULL,
                     id
                 FROM BUILDINGS
                 WHERE STREET = 'Kazimierza Wielkiego' AND NAME = 'Kino Nowe Horyzonty';
-            INSERT INTO ROOMS (number, name, "building_ID")
+            INSERT INTO ROOMS (number, name, building_id)
                 SELECT
                     3,
                     NULL,
                     id
                 FROM BUILDINGS
                 WHERE STREET = 'Kazimierza Wielkiego' AND NAME = 'Kino Nowe Horyzonty';
-            INSERT INTO ROOMS (number, name, "building_ID")
+            INSERT INTO ROOMS (number, name, building_id)
                 SELECT
                     4,
                     NULL,
@@ -225,28 +225,28 @@
                 WHERE STREET = 'Kazimierza Wielkiego' AND NAME = 'Kino Nowe Horyzonty';
 
             -- Helios Wrocław Magnolia Park
-            INSERT INTO ROOMS (number, name, "building_ID")
+            INSERT INTO ROOMS (number, name, building_id)
                 SELECT
                     1,
                     NULL,
                     id
                 FROM BUILDINGS
                 WHERE STREET = 'Legnicka' AND NAME = 'Helios Wrocław Magnolia Park';
-            INSERT INTO ROOMS (number, name, "building_ID")
+            INSERT INTO ROOMS (number, name, building_id)
                 SELECT
                     2,
                     NULL,
                     id
                 FROM BUILDINGS
                 WHERE STREET = 'Legnicka' AND NAME = 'Helios Wrocław Magnolia Park';
-            INSERT INTO ROOMS (number, name, "building_ID")
+            INSERT INTO ROOMS (number, name, building_id)
                 SELECT
                     3,
                     NULL,
                     id
                 FROM BUILDINGS
                 WHERE STREET = 'Legnicka' AND NAME = 'Helios Wrocław Magnolia Park';
-            INSERT INTO ROOMS (number, name, "building_ID")
+            INSERT INTO ROOMS (number, name, building_id)
                 SELECT
                     4,
                     NULL,
@@ -255,28 +255,28 @@
                 WHERE STREET = 'Legnicka' AND NAME = 'Helios Wrocław Magnolia Park';
 
             -- cinema city krewetka
-            INSERT INTO ROOMS (number, name, "building_ID")
+            INSERT INTO ROOMS (number, name, building_id)
                 SELECT
                     1,
                     NULL,
                     id
                 FROM BUILDINGS
                 WHERE STREET = 'Karmelicka' AND NAME = 'Kino Cinema City Krewetka';
-            INSERT INTO ROOMS (number, name, "building_ID")
+            INSERT INTO ROOMS (number, name, building_id)
                 SELECT
                     2,
                     NULL,
                     id
                 FROM BUILDINGS
                 WHERE STREET = 'Karmelicka' AND NAME = 'Kino Cinema City Krewetka';
-            INSERT INTO ROOMS (number, name, "building_ID")
+            INSERT INTO ROOMS (number, name, building_id)
                 SELECT
                     3,
                     NULL,
                     id
                 FROM BUILDINGS
                 WHERE STREET = 'Karmelicka' AND NAME = 'Kino Cinema City Krewetka';
-            INSERT INTO ROOMS (number, name, "building_ID")
+            INSERT INTO ROOMS (number, name, building_id)
                 SELECT
                     4,
                     NULL,
@@ -285,7 +285,7 @@
                 WHERE STREET = 'Karmelicka' AND NAME = 'Kino Cinema City Krewetka';
 
             --teatr komedia
-            INSERT INTO ROOMS (number, name, "building_ID")
+            INSERT INTO ROOMS (number, name, building_id)
                 SELECT
                     1,
                     'Sala główna',
@@ -294,7 +294,7 @@
                 WHERE STREET = 'Słowackiego' AND NAME = 'Teatr Komedia';
 
             --teatr syrena
-            INSERT INTO ROOMS (number, name, "building_ID")
+            INSERT INTO ROOMS (number, name, building_id)
                 SELECT
                     1,
                     'Sala główna',

@@ -16,6 +16,5 @@ class Room(
         val name: String,
         val number: Int,
         @ManyToOne
-        @JoinColumn(name = "building_ID")
         val building: Building
 )

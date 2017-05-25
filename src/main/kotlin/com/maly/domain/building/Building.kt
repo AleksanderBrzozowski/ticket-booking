@@ -18,7 +18,6 @@ class Building(
         val address: Address,
         @Enumerated(EnumType.STRING)
         @ManyToOne
-        @JoinColumn(name = "type_ID")
         val type: BuildingType,
         val name: String,
         @OneToMany(mappedBy = "building")

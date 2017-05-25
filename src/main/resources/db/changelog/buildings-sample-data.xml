@@ -11,7 +11,7 @@
 
     <changeSet id="sample-buildings-data" author="abrzozowski">
         <sql>
-            INSERT INTO BUILDINGS (NAME, CITY, STREET, HOUSE_NUMBER, X, Y, "type_ID")
+            INSERT INTO BUILDINGS (NAME, CITY, STREET, HOUSE_NUMBER, X, Y, type_id)
                 SELECT
                     'Cinema City',
                     'Warszawa',
@@ -22,7 +22,7 @@
                     id
                 FROM building_types
                 WHERE name = 'Kino';
-            INSERT INTO BUILDINGS (NAME, CITY, STREET, HOUSE_NUMBER, X, Y, "type_ID")
+            INSERT INTO BUILDINGS (NAME, CITY, STREET, HOUSE_NUMBER, X, Y, type_id)
                 SELECT
                     'Kino Luna',
                     'Warszawa',
@@ -33,7 +33,7 @@
                     id
                 FROM building_types
                 WHERE name = 'Kino';
-            INSERT INTO BUILDINGS (NAME, CITY, STREET, HOUSE_NUMBER, X, Y, "type_ID")
+            INSERT INTO BUILDINGS (NAME, CITY, STREET, HOUSE_NUMBER, X, Y, type_id)
                 SELECT
                     'Kino Iluzjon',
                     'Warszawa',
@@ -44,7 +44,7 @@
                     id
                 FROM building_types
                 WHERE name = 'Kino';
-            INSERT INTO BUILDINGS (NAME, CITY, STREET, HOUSE_NUMBER, X, Y, "type_ID")
+            INSERT INTO BUILDINGS (NAME, CITY, STREET, HOUSE_NUMBER, X, Y, type_id)
                 SELECT
                     'Kino Nowe Horyzonty',
                     'Wrocław',
@@ -55,7 +55,7 @@
                     id
                 FROM building_types
                 WHERE name = 'Kino';
-            INSERT INTO BUILDINGS (NAME, CITY, STREET, HOUSE_NUMBER, X, Y, "type_ID")
+            INSERT INTO BUILDINGS (NAME, CITY, STREET, HOUSE_NUMBER, X, Y, type_id)
                 SELECT
                     'Helios Wrocław Magnolia Park',
                     'Wrocław',
@@ -66,7 +66,7 @@
                     id
                 FROM building_types
                 WHERE name = 'Kino';
-            INSERT INTO BUILDINGS (NAME, CITY, STREET, HOUSE_NUMBER, X, Y, "type_ID")
+            INSERT INTO BUILDINGS (NAME, CITY, STREET, HOUSE_NUMBER, X, Y, type_id)
                 SELECT
                     'Kino Cinema City Krewetka',
                     'Gdańsk',
@@ -79,7 +79,7 @@
                 WHERE name = 'Kino';
 
 
-            INSERT INTO BUILDINGS (NAME, CITY, STREET, HOUSE_NUMBER, X, Y, "type_ID")
+            INSERT INTO BUILDINGS (NAME, CITY, STREET, HOUSE_NUMBER, X, Y, type_id)
                 SELECT
                     'Teatr Komedia',
                     'Warszawa',
@@ -90,7 +90,7 @@
                     id
                 FROM building_types
                 WHERE name = 'Teatr';
-            INSERT INTO BUILDINGS (NAME, CITY, STREET, HOUSE_NUMBER, X, Y, "type_ID")
+            INSERT INTO BUILDINGS (NAME, CITY, STREET, HOUSE_NUMBER, X, Y, type_id)
                 SELECT
                     'Teatr Syrena',
                     'Warszawa',
@@ -101,7 +101,7 @@
                     id
                 FROM building_types
                 WHERE name = 'Teatr';
-            INSERT INTO BUILDINGS (NAME, CITY, STREET, HOUSE_NUMBER, X, Y, "type_ID")
+            INSERT INTO BUILDINGS (NAME, CITY, STREET, HOUSE_NUMBER, X, Y, type_id)
                 SELECT
                     'Teatr Narodowy',
                     'Warszawa',
