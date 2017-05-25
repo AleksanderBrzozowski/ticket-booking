@@ -12,7 +12,7 @@ class BuildingService(private val buildingRepository: BuildingRepository,
                       private val buildingTypeRepository: BuildingTypeRepository) {
 
     fun findAllBuildings(type: BuildingType.Type): List<Building> {
-        return buildingTypeRepository.findOneByName(type.name)
+        return buildingTypeRepository.findOneByName(type.typeName)
                 ?.let { buildingRepository.findAllByType(it) }
                 ?: throw BusinessException("buildingType.notFound.error")
     }
