@@ -1,5 +1,6 @@
 package com.maly.domain.building
 
+import com.maly.presentation.error.BusinessException
 import org.springframework.stereotype.Service
 
 /**
@@ -13,6 +14,6 @@ class BuildingService(private val buildingRepository: BuildingRepository,
     fun findAllBuildings(type: BuildingType.Type): List<Building> {
         return buildingTypeRepository.findOneByName(type.name)
                 ?.let { buildingRepository.findAllByType(it) }
-                ?: throw RuntimeException("buildingType.notFound.error")
+                ?: throw BusinessException("buildingType.notFound.error")
     }
 }
