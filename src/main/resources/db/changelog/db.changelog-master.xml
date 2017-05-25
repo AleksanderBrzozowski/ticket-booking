@@ -2,9 +2,18 @@
 <databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <changeSet id="create-building-types-table" author="abrzozowski">
+        <createTable tableName="building_types">
+            <column name="ID" type="SMALLINT" autoIncrement="true">
+                <constraints primaryKey="true" primaryKeyName="PK_building_type"/>
+            </column>
+            <column name="name" type="NVARCHAR(16)"/>
+        </createTable>
+    </changeSet>
+
     <changeSet id="create-building-table" author="abrzozowski">
         <createTable tableName="buildings">
-            <column name="id" type="BIGINT" autoIncrement="true">
+            <column name="ID" type="BIGINT" autoIncrement="true">
                 <constraints primaryKey="true"/>
             </column>
             <column name="name" type="NVARCHAR(64)">
@@ -21,8 +30,8 @@
             </column>
             <column name="x" type="NVARCHAR(16)"/>
             <column name="y" type="NVARCHAR(16)"/>
-            <column name="type" type="NVARCHAR(16)">
-                <constraints nullable="false"/>
+            <column name="type_ID" type="SMALLINT">
+                <constraints nullable="false" foreignKeyName="building_building_type_FK" referencedColumnNames="ID" referencedTableName="building_types"/>
             </column>
         </createTable>
     </changeSet>
@@ -41,7 +50,7 @@
                 <constraints nullable="true"/>
             </column>
             <column name="building_ID" type="BIGINT">
-                <constraints foreignKeyName="room_building_FK" referencedTableName="buildings" referencedColumnNames="id" nullable="false"/>
+                <constraints foreignKeyName="room_building_FK" referencedTableName="buildings" referencedColumnNames="ID" nullable="false"/>
             </column>
         </createTable>
 

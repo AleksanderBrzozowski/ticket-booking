@@ -1,6 +1,5 @@
 package com.maly.domain.building
 
-import com.maly.domain.building.dto.TypeBuildingDto
 import org.springframework.stereotype.Service
 
 /**
@@ -8,19 +7,12 @@ import org.springframework.stereotype.Service
  */
 
 @Service
-class BuildingService(private val buildingRepository: BuildingRepository) {
+class BuildingService(private val buildingRepository: BuildingRepository,
+                      private val buildingTypeRepository: BuildingTypeRepository) {
 
-    fun findAllGroupedByType(): TypeBuildingDto {
-        val buildingsMap = buildingRepository.findAll()
-                .groupBy { it.type }
-
-        val cinemas = buildingsMap[Building.Type.CINEMA] ?: emptyList()
-        val theatres = buildingsMap[Building.Type.THEATRE] ?: emptyList()
-
-        return TypeBuildingDto(theatres = theatres, cinemas = cinemas)
-    }
-
-    fun findAllBuildings(type: Building.Type): List<Building> {
-        return buildingRepository.findAllByType(type)
+    fun findAllBuildings(type: BuildingType.Type): List<Building> {
+        return buildingTypeRepository.findOneByName(type.name)
+                ?.let { buildingRepository.findAllByType(it) }
+                ?: throw RuntimeException("buildingType.notFound.error")
     }
 }

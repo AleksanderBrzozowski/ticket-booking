@@ -17,12 +17,9 @@ class Building(
         @Embedded
         val address: Address,
         @Enumerated(EnumType.STRING)
-        val type: Type,
+        @ManyToOne
+        val type: BuildingType,
         val name: String,
         @OneToMany(mappedBy = "building")
         val rooms: List<Room>
-){
-    enum class Type {
-        CINEMA, THEATRE
-    }
-}
+)

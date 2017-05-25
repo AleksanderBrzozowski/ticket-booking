@@ -2,6 +2,7 @@ package com.maly.presentation.building
 
 import com.maly.domain.building.Building
 import com.maly.domain.building.BuildingService
+import com.maly.domain.building.BuildingType
 import com.maly.presentation.building.BuildingController.Companion.BASE_PATH
 import com.maly.system.Api
 import org.springframework.web.bind.annotation.RequestMapping
@@ -22,7 +23,7 @@ class BuildingController(private val buildingService: BuildingService) {
     }
 
     @RequestMapping(CITY_SORTED_PATH)
-    fun getBuildings(@RequestParam type: Building.Type): List<CitySortedBuildingsModel> {
+    fun getBuildings(@RequestParam type: BuildingType.Type): List<CitySortedBuildingsModel> {
         return buildingService.findAllBuildings(type)
                 .groupBy { it.address.city }
                 .map { (city, buildings) ->

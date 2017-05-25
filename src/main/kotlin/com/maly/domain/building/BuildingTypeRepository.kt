@@ -5,6 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository
 /**
  * @author Aleksander Brzozowski
  */
-interface BuildingRepository: JpaRepository<Building, Long> {
-    fun findAllByType(type: BuildingType): List<Building>
+interface BuildingTypeRepository: JpaRepository<BuildingType, Int>{
+    fun findOneByName(name: String): BuildingType?
 }
