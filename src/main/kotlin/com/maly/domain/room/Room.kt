@@ -1,6 +1,7 @@
 package com.maly.domain.room
 
 import com.maly.domain.building.Building
+import com.maly.domain.event.Event
 import javax.persistence.*
 
 /**
@@ -16,5 +17,7 @@ class Room(
         val name: String,
         val number: Int,
         @ManyToOne
-        val building: Building
+        val building: Building,
+        @OneToMany(mappedBy = "room")
+        val events: Set<Event>
 )

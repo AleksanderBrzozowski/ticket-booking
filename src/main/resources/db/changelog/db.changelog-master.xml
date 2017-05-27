@@ -7,7 +7,7 @@
             <column name="id" type="SMALLINT" autoIncrement="true">
                 <constraints primaryKey="true" primaryKeyName="PK_building_type"/>
             </column>
-            <column name="name" type="NVARCHAR(16)"/>
+            <column name="name" type="VARCHAR(16)"/>
         </createTable>
     </changeSet>
 
@@ -16,20 +16,20 @@
             <column name="id" type="BIGINT" autoIncrement="true">
                 <constraints primaryKey="true"/>
             </column>
-            <column name="name" type="NVARCHAR(64)">
+            <column name="name" type="VARCHAR(64)">
                     <constraints nullable="false"/>
             </column>
-            <column name="city" type="NVARCHAR(32)">
+            <column name="city" type="VARCHAR(32)">
                 <constraints nullable="false"/>
             </column>
-            <column name="street" type="NVARCHAR(64)">
+            <column name="street" type="VARCHAR(64)">
                 <constraints nullable="false"/>
             </column>
-            <column name="house_number" type="NVARCHAR(10)">
+            <column name="house_number" type="VARCHAR(10)">
                 <constraints nullable="false"/>
             </column>
-            <column name="x" type="NVARCHAR(16)"/>
-            <column name="y" type="NVARCHAR(16)"/>
+            <column name="x" type="VARCHAR(16)"/>
+            <column name="y" type="VARCHAR(16)"/>
             <column name="type_id" type="SMALLINT">
                 <constraints nullable="false" foreignKeyName="building_building_type_FK" referencedColumnNames="id" referencedTableName="building_types"/>
             </column>
@@ -46,7 +46,7 @@
             <column name="number" type="INT">
                 <constraints nullable="false"/>
             </column>
-            <column name="name" type="NVARCHAR(32)">
+            <column name="name" type="VARCHAR(32)">
                 <constraints nullable="true"/>
             </column>
             <column name="building_id" type="BIGINT">
@@ -58,5 +58,37 @@
     </changeSet>
 
     <include file="db/changelog/rooms-sample-data.xml"/>
+
+    <changeSet id="create-plays-table" author="abrzozowski">
+        <createTable tableName="plays">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="VARCHAR(64)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="VARCHAR(512)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="create-events-table" author="abrzozowski">
+        <createTable tableName="events">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="date" type="DATETIME">
+                    <constraints nullable="false"/>
+            </column>
+            <column name="price" type="NUMERIC(5,2)"/>
+            <column name="play_id" type="BIGINT">
+                <constraints referencedTableName="plays" referencedColumnNames="id" nullable="false" foreignKeyName="event_play_FK"/>
+            </column>
+            <column name="room_id" type="BIGINT">
+                <constraints referencedTableName="rooms" referencedColumnNames="id" nullable="false" foreignKeyName="event_room_FK"/>
+            </column>
+        </createTable>
+    </changeSet>
 
 </databaseChangeLog>

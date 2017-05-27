@@ -20,7 +20,8 @@
             },
             BUILDING: {
                 CHOOSE_BUILDING: 'Wybierz budynek',
-                CHOOSE_CITY: 'Wybierz miasto'
+                CHOOSE_CITY: 'Wybierz miasto',
+                CHOOSE_PLAY: 'Wybierz spektakl'
             }
         });
     }

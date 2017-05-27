@@ -1,10 +1,18 @@
 div.container
-    .col-md-3
+    .col-md-2
         p {{'BUILDING.CHOOSE_CITY' | translate}}
         ul.list-group
             a.list-group-item(href="" ng-repeat="(cityIndex, city) in vm.cities" ng-class="{'active': cityIndex == vm.chosenCityIndex}" ng-click="vm.chooseCity(cityIndex)") {{city}}
-    .col-md-3(ng-if="vm.chosenCityIndex != -1")
+    .col-md-2(ng-if="vm.chosenCityIndex != -1")
         p {{'BUILDING.CHOOSE_BUILDING' | translate}}
         ul.list-group
             a.list-group-item(href="" ng-repeat="(buildingIndex, building) in vm.buildings" ng-class="{'active': buildingIndex == vm.chosenBuildingIndex}" ng-click="vm.chooseBuilding(buildingIndex)") {{building.name}}
+    .col-md-3(ng-if="vm.chosenBuildingIndex != -1")
+        p {{'BUILDING.CHOOSE_PLAY' | translate}}
+        ul.list-group
+            a.list-group-item(href="" ng-repeat="(playIndex, play) in vm.plays" ng-class="{'active': playIndex == vm.chosenPlayIndex}" ng-click="vm.choosePlay(playIndex)") {{play.name}}
+    .col-md-3(ng-if="vm.chosenPlayIndex != -1")
+        p
+        .jumbotron
+            p asd
 
