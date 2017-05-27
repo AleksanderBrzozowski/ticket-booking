@@ -35,6 +35,7 @@ repositories {
 
 bootRun {
     addResources = true
+    systemProperties System.properties
 }
 
 noArg {

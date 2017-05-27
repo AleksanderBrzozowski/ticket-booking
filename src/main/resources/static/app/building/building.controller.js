@@ -25,13 +25,17 @@
 
         function chooseCity(chosenCityIndex) {
             vm.chosenCityIndex = chosenCityIndex;
+            vm.chosenBuildingIndex = -1;
+            vm.chosenPlayIndex = -1;
+
             vm.buildings = buildingsJson[chosenCityIndex].buildings;
         }
 
         function chooseBuilding(chosenBuildingIndex) {
             vm.chosenBuildingIndex = chosenBuildingIndex;
+            vm.chosenPlayIndex = -1;
             vm.plays = [];
-            BuildingService.getPlays(chosenBuildingIndex)
+            BuildingService.getPlays(vm.buildings[chosenBuildingIndex].id)
                 .then(function (response) {
                     vm.plays = response
                 })
