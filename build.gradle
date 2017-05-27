@@ -52,4 +52,6 @@ dependencies {
     testCompile('org.springframework.boot:spring-boot-starter-test')
     runtime('org.postgresql:postgresql')
     runtime('com.microsoft.sqlserver:mssql-jdbc')
+    compile("org.hibernate:hibernate-java8")
+    compile("com.fasterxml.jackson.datatype:jackson-datatype-jsr310")
 }

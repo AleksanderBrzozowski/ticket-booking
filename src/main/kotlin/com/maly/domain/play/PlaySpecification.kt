@@ -12,7 +12,7 @@ class PlaySpecification private constructor(){
 
     companion object {
         fun forBuilding(buildingId: Long): Specification<Play> {
-            return Specification { root, query, cb ->
+            return Specification { root, _, cb ->
                 val events = root.joinSet<Play, Event>("events")
                 val room = events.get<Room>("room")
                 val building = room.get<Building>("building")

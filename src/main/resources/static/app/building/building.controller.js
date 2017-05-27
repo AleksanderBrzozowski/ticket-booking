@@ -18,6 +18,7 @@
 
         vm.plays = [];
         vm.chosenPlayIndex = -1;
+        vm.play = null;
 
         vm.chooseCity = chooseCity;
         vm.chooseBuilding = chooseBuilding;
@@ -42,7 +43,8 @@
         }
 
         function choosePlay(chosenPlayIndex) {
-            vm.chosenPlayIndex = chosenPlayIndex
+            vm.chosenPlayIndex = chosenPlayIndex;
+            vm.play = vm.plays[vm.chosenPlayIndex];
         }
 
     }

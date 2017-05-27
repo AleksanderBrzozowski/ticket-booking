@@ -21,8 +21,15 @@
             BUILDING: {
                 CHOOSE_BUILDING: 'Wybierz budynek',
                 CHOOSE_CITY: 'Wybierz miasto',
-                CHOOSE_PLAY: 'Wybierz spektakl'
-            }
+                CHOOSE_PLAY: 'Wybierz spektakl',
+                CHOSEN_PLAY: 'Wybrany film'
+            },
+            PLAY: {
+                NO_DESCRIPTION: 'Brak opisu',
+                ORDER: 'Zamów',
+                BOOK: 'Rezerwuj'
+            },
+            CHOOSE: 'Wybierz'
         });
     }
 })();
