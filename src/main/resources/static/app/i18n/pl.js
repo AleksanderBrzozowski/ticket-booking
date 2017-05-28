@@ -32,9 +32,15 @@
             },
             CHOOSE: 'Wybierz',
             EVENT: {
-                CHOOSE: 'Wybierz wydarzenie'
+                CHOOSE: 'Wybierz wydarzenie',
+                PRICE: 'Cena',
+                CURRENCY: 'PLN'
             },
-            DATE: 'Data'
+            DATE: 'Data',
+            ORDER: {
+                BUY: 'Kupuję',
+                BOOK: 'Rezerwuję'
+            }
         });
     }
 })();

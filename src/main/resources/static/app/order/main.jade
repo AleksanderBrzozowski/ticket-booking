@@ -18,4 +18,11 @@
                  .col-md-7(ng-if="vm.chosenBuildingIndex != -1")
                      p {{'EVENT.CHOOSE' | translate}}
                      ul.list-group
-                         a.list-group-item(href="" ng-repeat="(eventIndex, event) in vm.events" ng-class="{'active': eventIndex == vm.chosenEventIndex}" ng-click="vm.chooseEvent(eventIndex)") {{event.room}}, {{'DATE' | translate}}: {{event.date}}
+                         a.list-group-item(href="" ng-repeat="(eventIndex, event) in vm.events" ng-class="{'active': eventIndex == vm.chosenEventIndex}" ng-click="vm.chooseEvent(eventIndex)") {{event.room}}, {{'DATE' | translate}}: {{event.date}}, {{'EVENT.PRICE' | translate}}: {{event.price}} {{'EVENT.CURRENCY' | translate}}
+             .row
+                 .col-md-12
+                     button.btn(ng-class="{'btn-default': !vm.order.buy, 'btn-primary' : vm.order.buy}" ng-click="vm.buyForm()") {{'ORDER.BUY' | translate}}
+                     button.btn(ng-class="{'btn-default': !vm.order.book, 'btn-primary' : vm.order.book}" ng-click="vm.bookForm()") {{'ORDER.BOOK' | translate}}
+             .row(ng-if="vm.order.buy || vm.order.book")
+                 .col-md-12
+                    h4 Podaj dane:

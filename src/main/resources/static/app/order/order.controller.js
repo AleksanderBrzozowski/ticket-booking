@@ -21,11 +21,6 @@
         vm.events = [];
         vm.chosenEventIndex = -1;
 
-        vm.close = close;
-        vm.chooseBuilding = chooseBuilding;
-        vm.chooseCity = chooseCity;
-        vm.chooseEvent = chooseEvent;
-
         vm.loading = true;
         EventService.getEvents(play.id)
             .then(function (response) {
@@ -47,6 +42,15 @@
 
                 vm.loading = false;
             });
+        resetOrderAndBuyButtons();
+
+        vm.close = close;
+
+        vm.chooseBuilding = chooseBuilding;
+        vm.chooseCity = chooseCity;
+        vm.chooseEvent = chooseEvent;
+        vm.bookForm = bookForm;
+        vm.buyForm = buyForm;
 
         function chooseCity(cityIndex) {
             vm.chosenBuildingIndex = -1;
@@ -72,6 +76,24 @@
 
         function close() {
             $uibModalInstance.close();
+        }
+
+
+        function bookForm() {
+            resetOrderAndBuyButtons();
+            vm.order.book = true;
+        }
+
+        function buyForm() {
+            resetOrderAndBuyButtons();
+            vm.order.buy = true;
+        }
+
+        function resetOrderAndBuyButtons() {
+            vm.order = {
+                buy: false,
+                book: false
+            };
         }
     }
 })();
