@@ -5,6 +5,7 @@
         'core',
         'index',
         'building',
-        'home'
+        'home',
+        'play'
     ]);
 })();

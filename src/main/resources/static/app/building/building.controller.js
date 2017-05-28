@@ -19,6 +19,7 @@
         vm.plays = [];
         vm.chosenPlayIndex = -1;
         vm.play = null;
+        vm.loadingPlays = false;
 
         vm.chooseCity = chooseCity;
         vm.chooseBuilding = chooseBuilding;
@@ -36,9 +37,11 @@
             vm.chosenBuildingIndex = chosenBuildingIndex;
             vm.chosenPlayIndex = -1;
             vm.plays = [];
+            vm.loadingPlays = true;
             BuildingService.getPlays(vm.buildings[chosenBuildingIndex].id)
                 .then(function (response) {
                     vm.plays = response
+                    vm.loadingPlays = false;
                 })
         }
 

@@ -27,7 +27,8 @@
             PLAY: {
                 NO_DESCRIPTION: 'Brak opisu',
                 ORDER: 'Zamów',
-                BOOK: 'Rezerwuj'
+                BOOK: 'Rezerwuj',
+                NO_PLAYS: 'Brak spektakli'
             },
             CHOOSE: 'Wybierz'
         });

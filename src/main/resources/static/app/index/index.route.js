@@ -8,13 +8,14 @@
     function routerConfig($stateProvider) {
         $stateProvider
             .state('index', {
+                url: '?query',
                 views: {
                     'navbar': {
                         templateUrl: 'app/navbar/main.html',
                         controller: 'NavbarController as vm'
                     },
                     '': {
-                        template: '<div class="ui-view"></div>'
+                        template: '<div class="container"><div class="ui-view"/></div>'
                     }
                 },
                 abstract: true

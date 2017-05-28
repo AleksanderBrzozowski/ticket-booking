@@ -12,9 +12,9 @@ nav.navbar.navbar-default
             ul.nav.navbar-nav
                 li(ng-repeat="bar in vm.bars" ng-class="{'active': bar.active}")
                     a(href="" ng-click="vm.menuBarClick(bar); $scope.navbarCollapsed = true;") {{bar.name | translate}}
-                form.navbar-form.navbar-left
+                form.navbar-form.navbar-left(ng-submit="vm.playQueryAction()")
                     .input-group
-                        input.input.form-control(type="text" placeholder="{{'NAVBAR.SEARCH' | translate}}")
+                        input.input.form-control(type="text" placeholder="{{'NAVBAR.SEARCH' | translate}}" ng-model="vm.playQuery" ng-model-options="{updateOn: 'blur'}")
                         .input-group-btn
-                            button.btn.btn-default(ng-disabled="true")
+                            button.btn.btn-default
                                 i.glyphicon.glyphicon-search
