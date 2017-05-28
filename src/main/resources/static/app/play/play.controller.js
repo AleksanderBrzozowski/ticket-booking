@@ -30,7 +30,7 @@
                 resolve: {
                     'play': play,
                     'buildingId': null,
-                    'cityId': null
+                    'city': null
                 }
             })
         }

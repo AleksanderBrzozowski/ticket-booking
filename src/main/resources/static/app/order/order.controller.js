@@ -4,12 +4,11 @@
     angular.module('order')
         .controller('OrderController', OrderController);
 
-    OrderController.$inject = ['play', 'buildingId', 'cityId', '$uibModalInstance', 'EventService'];
-    function OrderController(play, buildingId, cityId, $uibModalInstance, EventService) {
+    OrderController.$inject = ['play', 'buildingId', 'city', '$uibModalInstance', 'EventService'];
+    function OrderController(play, buildingId, city, $uibModalInstance, EventService) {
         var vm = this;
 
         var eventsJson = null;
-
 
         vm.play = play;
 
@@ -34,6 +33,18 @@
                 vm.cities = response.map(function (object) {
                     return object.city;
                 });
+
+                if (city !== null && buildingId !== null) {
+                    var cityIndex = vm.cities.indexOf(city);
+                    if (cityIndex !== -1) {
+                        chooseCity(cityIndex);
+                        var buildingIndex = _.findIndex(vm.buildings, ['id', buildingId]);
+                        if(buildingIndex !== -1) {
+                            chooseBuilding(buildingIndex)
+                        }
+                    }
+                }
+
                 vm.loading = false;
             });
 

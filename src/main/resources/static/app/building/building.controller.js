@@ -4,8 +4,8 @@
     angular.module('building')
         .controller('BuildingController', BuildingController);
 
-    BuildingController.$inject = ['BuildingService', 'type'];
-    function BuildingController(BuildingService, type) {
+    BuildingController.$inject = ['BuildingService', 'type', '$uibModal'];
+    function BuildingController(BuildingService, type, $uibModal) {
         var vm = this;
 
         vm.loading = true;
@@ -37,6 +37,7 @@
         vm.chooseCity = chooseCity;
         vm.chooseBuilding = chooseBuilding;
         vm.choosePlay = choosePlay;
+        vm.orderPlay = orderPlay;
 
         function chooseCity(chosenCityIndex) {
             vm.chosenCityIndex = chosenCityIndex;
@@ -63,5 +64,22 @@
             vm.play = vm.plays[vm.chosenPlayIndex];
         }
 
+        function orderPlay() {
+            var city = vm.cities[vm.chosenCityIndex];
+            var building = vm.buildings[vm.chosenBuildingIndex];
+            var play = vm.plays[vm.chosenPlayIndex];
+
+            $uibModal.open({
+                templateUrl: 'app/order/main.html',
+                controller: 'OrderController',
+                size: 'lg',
+                controllerAs: 'vm',
+                resolve: {
+                    'play': function() {return play},
+                    'buildingId': function() {return building.id},
+                    'city': function() {return city}
+                }
+            })
+        }
     }
 })();

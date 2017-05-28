@@ -23,4 +23,4 @@ div(ng-if="!vm.loading")
             p(ng-if="vm.play.description") {{vm.play.description}}
             p(ng-if="!vm.play.description")
                 i {{'PLAY.NO_DESCRIPTION' | translate}}
-            button.btn.btn-primary {{'CHOOSE' | translate}}
+            button.btn.btn-primary(ng-click="vm.orderPlay()") {{'CHOOSE' | translate}}
