@@ -4,14 +4,27 @@
     angular.module('building')
         .controller('BuildingController', BuildingController);
 
-    BuildingController.$inject = ['buildingsJson', 'BuildingService'];
-    function BuildingController(buildingsJson, BuildingService) {
+    BuildingController.$inject = ['BuildingService', 'type'];
+    function BuildingController(BuildingService, type) {
         var vm = this;
 
+        vm.loading = true;
+
+        var buildingsJson = null;
+
         vm.chosenCityIndex = -1;
-        vm.cities = buildingsJson.map(function (building) {
-            return building.city;
-        });
+        vm.cities = [];
+
+        BuildingService.getBuildings(type)
+            .then(function (response) {
+                buildingsJson = response;
+
+                vm.cities = response.map(function (building) {
+                    return building.city;
+                });
+
+                vm.loading = false;
+            });
 
         vm.chosenBuildingIndex = -1;
         vm.buildings = [];
@@ -40,7 +53,7 @@
             vm.loadingPlays = true;
             BuildingService.getPlays(vm.buildings[chosenBuildingIndex].id)
                 .then(function (response) {
-                    vm.plays = response
+                    vm.plays = response;
                     vm.loadingPlays = false;
                 })
         }

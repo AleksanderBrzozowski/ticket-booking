@@ -14,7 +14,7 @@ class Room(
         @GeneratedValue
         @Id
         val id: Long,
-        val name: String,
+        val name: String?,
         val number: Int,
         @ManyToOne
         val building: Building,

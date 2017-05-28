@@ -16,8 +16,8 @@
                 templateUrl: 'app/building/main.html',
                 controller: 'BuildingController as vm',
                 resolve: {
-                    buildingsJson: function(BuildingService) {
-                        return BuildingService.getBuildings('CINEMA')
+                    type: function() {
+                        return 'CINEMA'
                     }
                 }
             })
@@ -26,8 +26,8 @@
                 templateUrl: 'app/building/main.html',
                 controller: 'BuildingController as vm',
                 resolve: {
-                    buildingsJson: function(BuildingService) {
-                        return BuildingService.getBuildings('THEATRE')
+                    type: function() {
+                        return 'THEATRE'
                     }
                 }
             });

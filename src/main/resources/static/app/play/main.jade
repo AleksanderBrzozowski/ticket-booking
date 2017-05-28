@@ -9,4 +9,4 @@ div(ng-if="!vm.loading")
                 p(ng-if="play.description") {{play.description}}
                 p(ng-if="!play.description")
                     i {{'PLAY.NO_DESCRIPTION' | translate}}
-                button.btn.btn-primary {{'CHOOSE' | translate}}
+                button.btn.btn-primary(ng-click="vm.choosePlay(play)") {{'CHOOSE' | translate}}

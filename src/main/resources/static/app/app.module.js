@@ -6,6 +6,8 @@
         'index',
         'building',
         'home',
-        'play'
+        'play',
+        'order',
+        'event'
     ]);
 })();

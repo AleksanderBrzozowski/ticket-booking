@@ -30,7 +30,11 @@
                 BOOK: 'Rezerwuj',
                 NO_PLAYS: 'Brak spektakli'
             },
-            CHOOSE: 'Wybierz'
+            CHOOSE: 'Wybierz',
+            EVENT: {
+                CHOOSE: 'Wybierz wydarzenie'
+            },
+            DATE: 'Data'
         });
     }
 })();

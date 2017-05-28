@@ -1,0 +1,21 @@
+.modal-content
+    .modal-header
+        button.close(type="button" data-dismiss="modal" ng-click="vm.close()") &times;
+        h4.modal-title {{vm.play.name}}
+     .modal-body
+         .progress.progress-striped.active(ng-if="vm.loading")
+             .progress-bar(role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%")
+          div(ng-if="!vm.loading")
+             .row
+                 .col-md-2
+                     p {{'BUILDING.CHOOSE_CITY' | translate}}
+                     ul.list-group
+                         a.list-group-item(href="" ng-repeat="(cityIndex, city) in vm.cities" ng-class="{'active': cityIndex == vm.chosenCityIndex}" ng-click="vm.chooseCity(cityIndex)") {{city}}
+                 .col-md-3(ng-if="vm.chosenCityIndex != -1")
+                     p {{'BUILDING.CHOOSE_BUILDING' | translate}}
+                     ul.list-group
+                         a.list-group-item(href="" ng-repeat="(buildingIndex, building) in vm.buildings" ng-class="{'active': buildingIndex == vm.chosenBuildingIndex}" ng-click="vm.chooseBuilding(buildingIndex)") {{building.name}}
+                 .col-md-7(ng-if="vm.chosenBuildingIndex != -1")
+                     p {{'EVENT.CHOOSE' | translate}}
+                     ul.list-group
+                         a.list-group-item(href="" ng-repeat="(eventIndex, event) in vm.events" ng-class="{'active': eventIndex == vm.chosenEventIndex}" ng-click="vm.chooseEvent(eventIndex)") {{event.room}}, {{'DATE' | translate}}: {{event.date}}
