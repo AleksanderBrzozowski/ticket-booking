@@ -11,8 +11,9 @@ import org.springframework.data.jpa.domain.Specification
 class PlaySpecification private constructor(){
 
     companion object {
-        fun forBuilding(buildingId: Long): Specification<Play> {
-            return Specification { root, _, cb ->
+        fun forBuilding(buildingId: Long, distinctPlays: Boolean): Specification<Play> {
+            return Specification { root, query, cb ->
+                query.distinct(distinctPlays)
                 val events = root.joinSet<Play, Event>("events")
                 val room = events.get<Room>("room")
                 val building = room.get<Building>("building")

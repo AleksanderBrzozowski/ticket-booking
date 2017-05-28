@@ -10,7 +10,11 @@ import org.springframework.stereotype.Service
 class PlayService(private val playRepository: PlayRepository) {
 
     fun getPlaysByBuildingId(buildingId: Long): List<Play> {
-        return playRepository.findAll(Specifications.where(PlaySpecification.forBuilding(buildingId)))
+        val specifications = Specifications.where(
+                PlaySpecification.forBuilding(buildingId = buildingId, distinctPlays = true)
+        )
+
+        return playRepository.findAll(specifications)
     }
 
     fun getPlaysByQuery(query: String) = playRepository.findAllByNameIgnoreCaseStartsWith(query)

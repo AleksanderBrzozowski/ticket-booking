@@ -5,6 +5,8 @@
         'restangular',
         'pascalprecht.translate',
         'ui.router',
-        'ui.bootstrap'
+        'ui.bootstrap',
+        'ngSanitize',
+        'ui.select'
     ]);
 })();
