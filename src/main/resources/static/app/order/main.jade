@@ -20,15 +20,24 @@
                 .col-md-7(ng-if="vm.chosenBuildingIndex != -1")
                     span
                         p {{'EVENT.CHOOSE' | translate}}
-                    ui-select(ng-model="vm.selectedEvent" theme="bootstrap")
-                        ui-select-match(placeholder="Wybierz wydarzenie") {{$select.selected.date}}
+                    ui-select(ng-model="vm.chosenEvent" theme="bootstrap")
+                        ui-select-match(placeholder="{{'EVENT.CHOOSE' | translate}}") {{$select.selected.date}}, {{'EVENT.PRICE' | translate}}: {{$select.selected.price}} {{'EVENT.CURRENCY' | translate}}
                         ui-select-choices(repeat="event in vm.events")
-                            h5 {{'DATE' | translate}}: {{event.date}}, {{'EVENT.PRICE' | translate}}: {{event.price}} {{'EVENT.CURRENCY' | translate}}
-                            small {{event.room}}
-            .row
-                .col-md-12
-                    button.btn(ng-class="{'btn-default': !vm.order.buy, 'btn-primary' : vm.order.buy}" ng-click="vm.buyForm()") {{'ORDER.BUY' | translate}}
-                    button.btn(ng-class="{'btn-default': !vm.order.book, 'btn-primary' : vm.order.book}" ng-click="vm.bookForm()") {{'ORDER.BOOK' | translate}}
-            .row(ng-if="vm.order.buy || vm.order.book")
-                .col-md-12
-                    h4 Podaj dane:
+                            h5 {{event.date}}, {{'EVENT.PRICE' | translate}}: {{event.price}} {{'EVENT.CURRENCY' | translate}}
+                            small {{event.room.name}}
+            div(ng-if="vm.chosenEvent")
+                .row
+                    .col-md-12
+                        p {{vm.chosenEvent.room.name}}
+                        p {{'SEAT.CHOOSE_SEATS' | translate}}:
+                        ui-select(multiple ng-model="vm.chosenSeat" theme="bootstrap")
+                            ui-select-match(placeholder="{{'SEAT.CHOOSE_SEATS' | translate}}") {{'SEAT.ROW' | translate}}: {{$item.row}}, {{'SEAT.NUMBER' | translate}}: {{$item.number}}
+                            ui-select-choices(repeat="seat in vm.chosenEvent.room.seats")
+                                h5 {{'SEAT.ROW' | translate}}: {{seat.row}}, {{'SEAT.NUMBER' | translate}}: {{seat.number}}
+                .row
+                    .col-md-12
+                        button.btn(ng-class="{'btn-default': !vm.order.buy, 'btn-primary' : vm.order.buy}" ng-click="vm.buyForm()") {{'ORDER.BUY' | translate}}
+                        button.btn(ng-class="{'btn-default': !vm.order.book, 'btn-primary' : vm.order.book}" ng-click="vm.bookForm()") {{'ORDER.BOOK' | translate}}
+                .row(ng-if="vm.order.buy || vm.order.book")
+                    .col-md-12
+                        p Podaj dane:

@@ -19,7 +19,7 @@
         vm.chosenBuildingIndex = -1;
 
         vm.events = [];
-        vm.chosenEventIndex = -1;
+        vm.chosenEvent = null;
 
         vm.loading = true;
         EventService.getEvents(play.id)
@@ -48,13 +48,15 @@
 
         vm.chooseBuilding = chooseBuilding;
         vm.chooseCity = chooseCity;
-        vm.chooseEvent = chooseEvent;
         vm.bookForm = bookForm;
         vm.buyForm = buyForm;
 
         function chooseCity(cityIndex) {
+            if (cityIndex === vm.chosenCityIndex) {
+                return;
+            }
             vm.chosenBuildingIndex = -1;
-            vm.chosenEventIndex = -1;
+            vm.chosenEvent = null;
 
             vm.chosenCityIndex = cityIndex;
 
@@ -64,14 +66,13 @@
         }
 
         function chooseBuilding(buildingIndex) {
+            if (buildingIndex === vm.chosenBuildingIndex) {
+                return;
+            }
             vm.chosenBuildingIndex = buildingIndex;
-            vm.chosenEventIndex = -1;
+            vm.chosenEvent = null;
 
             vm.events = eventsJson[vm.chosenCityIndex].buildings[buildingIndex].events
-        }
-
-        function chooseEvent(eventIndex) {
-            vm.chosenEventIndex = eventIndex;
         }
 
         function close() {

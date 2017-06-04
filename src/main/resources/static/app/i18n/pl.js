@@ -40,6 +40,11 @@
             ORDER: {
                 BUY: 'Kupuję',
                 BOOK: 'Rezerwuję'
+            },
+            SEAT: {
+                CHOOSE_SEATS: 'Wybierz miejsca',
+                ROW: 'rząd',
+                NUMBER: 'numer'
             }
         });
     }

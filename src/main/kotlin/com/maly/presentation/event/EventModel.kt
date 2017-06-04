@@ -10,7 +10,7 @@ import java.util.*
 /**
  * @author Aleksander Brzozowski
  */
-class EventModel(val id: Long, val date: String, val room: String, val price: BigDecimal) {
+class EventModel(val id: Long, val date: String, val room: RoomModel, val price: BigDecimal) {
 
     companion object {
         private val dateTimeFormatter = DateTimeFormatter

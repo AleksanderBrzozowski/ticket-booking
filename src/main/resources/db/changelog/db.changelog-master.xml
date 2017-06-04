@@ -81,7 +81,7 @@
             <column name="date" type="DATETIME">
                     <constraints nullable="false"/>
             </column>
-            <column name="price" type="NUMERIC(5,2)"/>
+            <column name="price" type="NUMERIC(6,2)"/>
             <column name="play_id" type="BIGINT">
                 <constraints referencedTableName="plays" referencedColumnNames="id" nullable="false" foreignKeyName="event_play_FK"/>
             </column>
@@ -91,4 +91,24 @@
         </createTable>
     </changeSet>
 
+    <changeSet id="create-seats-table" author="abrzozowski">
+        <createTable tableName="seatings">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="row" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="number" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="room_id" type="BIGINT">
+                <constraints referencedTableName="rooms" referencedColumnNames="id" nullable="false" foreignKeyName="seat_room_FK"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <include file="db/changelog/plays-sample-data.xml"/>
+    <include file="db/changelog/rooms-sample-data.xml"/>
+    <include file="db/changelog/events-sample-data.xml"/>
 </databaseChangeLog>

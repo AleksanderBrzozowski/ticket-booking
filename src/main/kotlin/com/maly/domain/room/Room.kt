@@ -19,5 +19,7 @@ class Room(
         @ManyToOne
         val building: Building,
         @OneToMany(mappedBy = "room")
-        val events: Set<Event>
+        val events: Set<Event>,
+        @OneToMany(mappedBy = "room")
+        val seats: Set<Seat>
 )
