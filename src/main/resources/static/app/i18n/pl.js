@@ -39,7 +39,11 @@
             DATE: 'Data',
             ORDER: {
                 BUY: 'Kupuję',
-                BOOK: 'Rezerwuję'
+                BOOK: 'Rezerwuję',
+                ADD_ROW: 'Dodaj wiersz',
+                REMOVE_ROW: 'Usuń wiersz',
+                CHOOSE_DISCOUNT: 'Wybierz zniżkę',
+                PRICE_SUM: 'Suma'
             },
             SEAT: {
                 CHOOSE_SEATS: 'Wybierz miejsca',

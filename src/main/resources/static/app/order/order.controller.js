@@ -4,8 +4,8 @@
     angular.module('order')
         .controller('OrderController', OrderController);
 
-    OrderController.$inject = ['play', 'buildingId', 'city', '$uibModalInstance', 'EventService', 'PlayService'];
-    function OrderController(play, buildingId, city, $uibModalInstance, EventService, PlayService) {
+    OrderController.$inject = ['play', 'buildingId', 'city', '$uibModalInstance', 'EventService', 'PlayService', 'RoomService', 'OrderService'];
+    function OrderController(play, buildingId, city, $uibModalInstance, EventService, PlayService, RoomService, OrderService) {
         var vm = this;
 
         var buildingsJson = null;
@@ -22,8 +22,17 @@
         vm.events = [];
         vm.chosenEvent = null;
 
+        var seats = [];
+        vm.possibleSeats = [];
+
+        vm.discounts = [];
+
         vm.loading = true;
         vm.loadingEvents = false;
+        vm.loadingDiscounts = false;
+        vm.loadingSeats = false;
+
+        vm.rows = null;
 
         PlayService.getBuildings(play.id).then(function (response) {
             buildingsJson = response;
@@ -54,6 +63,32 @@
         vm.chooseCity = chooseCity;
         vm.bookForm = bookForm;
         vm.buyForm = buyForm;
+        vm.chooseEvent = chooseEvent;
+        vm.addRow = addRow;
+        vm.removeRow = removeRow;
+        vm.getPossibleSeats = getPossibleSeats;
+        vm.getPrice = getPrice;
+        vm.getPriceSum = getPriceSum;
+
+        function getPriceSum() {
+            return _.reduce(vm.rows, function(sum, object, index){
+                return sum + getPrice(index)
+            }, 0)
+        }
+
+        function getPossibleSeats(index) {
+            var possibleSeats = _.clone(seats);
+            var chosenSeats = vm.rows.map(function (object) {
+                return object.chosen;
+            });
+
+            possibleSeats = _.filter(possibleSeats, function (possibleSeat) {
+                var indexOf = chosenSeats.indexOf(possibleSeat);
+                return indexOf === -1 || indexOf === index;
+            });
+
+            return possibleSeats;
+        }
 
         function chooseCity(cityIndex) {
             if (cityIndex === vm.chosenCityIndex) {
@@ -81,8 +116,48 @@
                 });
         }
 
+        function chooseEvent() {
+            vm.loadingSeats = true;
+
+            RoomService.getSeats(vm.chosenEvent.room.id, vm.chosenEvent.id)
+                .then(function (response) {
+                    seats = response;
+                    vm.possibleSeats = _.clone(seats);
+                    vm.rows = [];
+                    addRow();
+                    vm.loadingSeats = false;
+                });
+
+            if (vm.discounts.length < 1) {
+                vm.loadingDiscounts = true;
+                OrderService.getDiscounts().then(function (response) {
+                    vm.discounts = response;
+                    vm.loadingDiscounts = false;
+                })
+            }
+        }
+
+        function addRow() {
+            vm.rows.push({
+                chosen: null
+            })
+        }
+
+        function removeRow() {
+            vm.rows.pop();
+        }
+
         function close() {
-            $uibModalInstance.close();
+            $uibModalInstance.dismiss('close');
+        }
+
+        function getPrice(index) {
+            var chosenDiscount = vm.rows[index].chosenDiscount;
+            if (angular.isDefined(chosenDiscount) && chosenDiscount !== null) {
+                return vm.chosenEvent.price - (vm.chosenEvent.price * chosenDiscount.value * 0.01);
+            } else {
+                return vm.chosenEvent.price;
+            }
         }
 
 

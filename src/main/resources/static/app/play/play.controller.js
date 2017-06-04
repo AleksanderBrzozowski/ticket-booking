@@ -32,6 +32,10 @@
                     'buildingId': null,
                     'city': null
                 }
+            }).result.catch(function(res){
+                if (!(res === 'close' || res === 'backdrop click')) {
+                    throw res;
+                }
             })
         }
     }

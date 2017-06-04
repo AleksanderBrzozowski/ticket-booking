@@ -72,6 +72,10 @@
                     'buildingId': function() {return building.id},
                     'city': function() {return city}
                 }
+            }).result.catch(function(res){
+                if (!(res === 'cancel' || res === 'backdrop click')) {
+                    throw res;
+                }
             })
         }
     }

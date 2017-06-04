@@ -8,6 +8,7 @@
         'home',
         'play',
         'order',
-        'event'
+        'event',
+        'room'
     ]);
 })();
