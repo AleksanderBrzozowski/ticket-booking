@@ -4,10 +4,11 @@
     angular.module('order')
         .controller('OrderController', OrderController);
 
-    OrderController.$inject = ['play', 'buildingId', 'city', '$uibModalInstance', 'EventService'];
-    function OrderController(play, buildingId, city, $uibModalInstance, EventService) {
+    OrderController.$inject = ['play', 'buildingId', 'city', '$uibModalInstance', 'EventService', 'PlayService'];
+    function OrderController(play, buildingId, city, $uibModalInstance, EventService, PlayService) {
         var vm = this;
 
+        var buildingsJson = null;
         var eventsJson = null;
 
         vm.play = play;
@@ -22,26 +23,29 @@
         vm.chosenEvent = null;
 
         vm.loading = true;
-        EventService.getEvents(play.id)
-            .then(function (response) {
-                eventsJson = response;
-                vm.cities = response.map(function (object) {
-                    return object.city;
-                });
+        vm.loadingEvents = false;
 
-                if (city !== null && buildingId !== null) {
-                    var cityIndex = vm.cities.indexOf(city);
-                    if (cityIndex !== -1) {
-                        chooseCity(cityIndex);
-                        var buildingIndex = _.findIndex(vm.buildings, ['id', buildingId]);
-                        if(buildingIndex !== -1) {
-                            chooseBuilding(buildingIndex)
-                        }
+        PlayService.getBuildings(play.id).then(function (response) {
+            buildingsJson = response;
+
+            vm.cities = response.map(function (building) {
+                return building.city;
+            });
+
+            if (city !== null && buildingId !== null) {
+                var cityIndex = vm.cities.indexOf(city);
+                if (cityIndex !== -1) {
+                    chooseCity(cityIndex);
+                    var buildingIndex = _.findIndex(vm.buildings, ['id', buildingId]);
+                    if (buildingIndex !== -1) {
+                        chooseBuilding(buildingIndex)
                     }
                 }
+            }
 
-                vm.loading = false;
-            });
+            vm.loading = false;
+        });
+
         resetOrderAndBuyButtons();
 
         vm.close = close;
@@ -60,9 +64,7 @@
 
             vm.chosenCityIndex = cityIndex;
 
-            vm.buildings = eventsJson[cityIndex].buildings.map(function(object) {
-                return object.building;
-            });
+            vm.buildings = buildingsJson[cityIndex].buildings
         }
 
         function chooseBuilding(buildingIndex) {
@@ -70,9 +72,13 @@
                 return;
             }
             vm.chosenBuildingIndex = buildingIndex;
-            vm.chosenEvent = null;
 
-            vm.events = eventsJson[vm.chosenCityIndex].buildings[buildingIndex].events
+            vm.loadingEvents = true;
+            EventService.getEventsByPlayIdAndBuilding(vm.buildings[buildingIndex].id, play.id)
+                .then(function (response) {
+                    vm.events = response;
+                    vm.loadingEvents = false;
+                });
         }
 
         function close() {
@@ -97,4 +103,5 @@
             };
         }
     }
-})();
+})
+();

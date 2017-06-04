@@ -7,11 +7,11 @@
     EventService.$inject = ['Restangular'];
     function EventService(Restangular) {
         return {
-            getEvents: getEvents
+            getEventsByPlayIdAndBuilding: getEventsByBuildingAndPlay
         };
 
-        function getEvents(playId) {
-            return eventsPath().all('building-group').getList({playId: playId})
+        function getEventsByBuildingAndPlay(buildingId, playId){
+            return eventsPath().getList({buildingId: buildingId, playId: playId})
         }
 
         function eventsPath(id) {

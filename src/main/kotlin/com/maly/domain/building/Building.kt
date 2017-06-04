@@ -21,5 +21,5 @@ class Building(
         val type: BuildingType,
         val name: String,
         @OneToMany(mappedBy = "building")
-        val rooms: List<Room>
+        val rooms: Set<Room>
 )

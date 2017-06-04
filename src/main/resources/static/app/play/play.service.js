@@ -7,15 +7,20 @@
     PlayService.$inject = ['Restangular'];
     function PlayService(Restangular) {
         return {
-            getPlays: getPlays
+            getPlays: getPlays,
+            getBuildings: getBuildings
         };
 
         function getPlays(query) {
             return playsPath().getList({query: query})
         }
 
-        function playsPath() {
-            return Restangular.all('plays');
+        function getBuildings(id) {
+            return playsPath(id).all('buildings').getList();
+        }
+
+        function playsPath(id) {
+            return angular.isUndefined(id) ? Restangular.all('plays') : Restangular.one('plays', id);
         }
     }
 })();

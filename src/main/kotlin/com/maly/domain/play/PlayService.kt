@@ -33,5 +33,4 @@ class PlayService(private val playRepository: PlayRepository) {
                 .and(forDistinct())
         return playRepository.findAll(specifications)
     }
-
 }

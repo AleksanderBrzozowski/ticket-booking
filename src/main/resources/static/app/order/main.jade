@@ -20,6 +20,8 @@
                 .col-md-7(ng-if="vm.chosenBuildingIndex != -1")
                     span
                         p {{'EVENT.CHOOSE' | translate}}
+                    .progress.progress-striped.active(ng-if="vm.loadingEvents")
+                        .progress-bar(role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%")
                     ui-select(ng-model="vm.chosenEvent" theme="bootstrap")
                         ui-select-match(placeholder="{{'EVENT.CHOOSE' | translate}}") {{$select.selected.date}}, {{'EVENT.PRICE' | translate}}: {{$select.selected.price}} {{'EVENT.CURRENCY' | translate}}
                         ui-select-choices(repeat="event in vm.events")

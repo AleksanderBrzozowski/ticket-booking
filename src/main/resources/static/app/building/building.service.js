@@ -21,7 +21,6 @@
 
         function buildingsPath(id) {
             return angular.isUndefined(id) ? Restangular.all('buildings') : Restangular.one('buildings', id);
-
         }
     }
 })();

@@ -6,10 +6,7 @@ import com.maly.domain.play.PlayService
 import com.maly.presentation.building.BuildingController.Companion.BASE_PATH
 import com.maly.presentation.play.PlayModel
 import com.maly.system.Api
-import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RequestParam
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 
 /**
  * @author Aleksander Brzozowski
@@ -27,7 +24,7 @@ class BuildingController(private val buildingService: BuildingService,
         const val BUILDING_PLAYS = "$ID_PATH/plays"
     }
 
-    @RequestMapping(CITY_SORTED_PATH)
+    @GetMapping(CITY_SORTED_PATH)
     fun getBuildings(@RequestParam type: BuildingType.Type): List<CitySortedBuildingsModel> {
         return buildingService.findAllBuildings(type)
                 .groupBy { it.address.city }
@@ -36,7 +33,7 @@ class BuildingController(private val buildingService: BuildingService,
                 }
     }
 
-    @RequestMapping(BUILDING_PLAYS)
+    @GetMapping(BUILDING_PLAYS)
     fun getPlays(@PathVariable id: Long): List<PlayModel> {
         return playService.getPlaysByBuildingId(id)
                 .map { PlayModel.of(it) }

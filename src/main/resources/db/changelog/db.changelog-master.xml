@@ -17,7 +17,7 @@
                 <constraints primaryKey="true"/>
             </column>
             <column name="name" type="VARCHAR(64)">
-                    <constraints nullable="false"/>
+                <constraints nullable="false"/>
             </column>
             <column name="city" type="VARCHAR(32)">
                 <constraints nullable="false"/>
@@ -31,7 +31,8 @@
             <column name="x" type="VARCHAR(16)"/>
             <column name="y" type="VARCHAR(16)"/>
             <column name="type_id" type="SMALLINT">
-                <constraints nullable="false" foreignKeyName="building_building_type_FK" referencedColumnNames="id" referencedTableName="building_types"/>
+                <constraints nullable="false" foreignKeyName="building_building_type_FK" referencedColumnNames="id"
+                             referencedTableName="building_types"/>
             </column>
         </createTable>
     </changeSet>
@@ -50,7 +51,8 @@
                 <constraints nullable="true"/>
             </column>
             <column name="building_id" type="BIGINT">
-                <constraints foreignKeyName="room_building_FK" referencedTableName="buildings" referencedColumnNames="id" nullable="false"/>
+                <constraints foreignKeyName="room_building_FK" referencedTableName="buildings"
+                             referencedColumnNames="id" nullable="false"/>
             </column>
         </createTable>
 
@@ -79,14 +81,16 @@
                 <constraints primaryKey="true"/>
             </column>
             <column name="date" type="DATETIME">
-                    <constraints nullable="false"/>
+                <constraints nullable="false"/>
             </column>
             <column name="price" type="NUMERIC(6,2)"/>
             <column name="play_id" type="BIGINT">
-                <constraints referencedTableName="plays" referencedColumnNames="id" nullable="false" foreignKeyName="event_play_FK"/>
+                <constraints referencedTableName="plays" referencedColumnNames="id" nullable="false"
+                             foreignKeyName="event_play_FK"/>
             </column>
             <column name="room_id" type="BIGINT">
-                <constraints referencedTableName="rooms" referencedColumnNames="id" nullable="false" foreignKeyName="event_room_FK"/>
+                <constraints referencedTableName="rooms" referencedColumnNames="id" nullable="false"
+                             foreignKeyName="event_room_FK"/>
             </column>
         </createTable>
     </changeSet>
@@ -103,7 +107,8 @@
                 <constraints nullable="false"/>
             </column>
             <column name="room_id" type="BIGINT">
-                <constraints referencedTableName="rooms" referencedColumnNames="id" nullable="false" foreignKeyName="seat_room_FK"/>
+                <constraints referencedTableName="rooms" referencedColumnNames="id" nullable="false"
+                             foreignKeyName="seat_room_FK"/>
             </column>
         </createTable>
     </changeSet>
@@ -111,4 +116,98 @@
     <include file="db/changelog/plays-sample-data.xml"/>
     <include file="db/changelog/rooms-sample-data.xml"/>
     <include file="db/changelog/events-sample-data.xml"/>
+
+    <changeSet id="create-sale-form-table" author="abrzozowski">
+        <createTable tableName="sale_forms">
+            <column name="id" type="SMALLINT" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="VARCHAR(64)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="create-discounts-table" author="abrzozowski">
+        <createTable tableName="discounts">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="VARCHAR(64)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="value" type="NUMERIC(2, 0)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="create-reservation-table" author="abrzozowski">
+        <createTable tableName="reservations">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="date" type="DATETIME">
+                <constraints nullable="false"/>
+            </column>
+            <column name="sale_form_id" type="SMALLINT">
+                <constraints referencedTableName="sale_forms" referencedColumnNames="id" nullable="false" foreignKeyName="reservation_sale_form_FK"/>
+            </column>
+            <column name="expiry_date" type="DATETIME"/>
+            <column name="firstname" type="VARCHAR(32)"/>
+            <column name="lastname" type="VARCHAR(64)"/>
+            <column name="telephone" type="VARCHAR(12)"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="create-promotion-table" author="abrzozowski">
+        <createTable tableName="promotions">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="VARCHAR(64)"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="create-sale-table" author="abrzozowski">
+        <createTable tableName="sales">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="date" type="DATETIME">
+                <constraints nullable="false"/>
+            </column>
+            <column name="sale_form_id" type="SMALLINT">
+                <constraints referencedTableName="sale_forms" referencedColumnNames="id" nullable="false" foreignKeyName="sale_sale_form_FK"/>
+            </column>
+            <column name="promotion_id" type="SMALLINT">
+                <constraints referencedTableName="promotions" referencedColumnNames="id" foreignKeyName="sale_promotion_FK"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="create-ticket-table" author="abrzozowski">
+        <createTable tableName="tickets">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="reservation_id" type="BIGINT">
+                <constraints referencedColumnNames="id" referencedTableName="reservations" foreignKeyName="ticket_reservation_FK"/>
+            </column>
+            <column name="sale_id" type="BIGINT">
+                <constraints referencedColumnNames="id" referencedTableName="sales" foreignKeyName="ticket_sale_FK"/>
+            </column>
+            <column name="discount_id" type="BIGINT">
+                <constraints referencedColumnNames="id" referencedTableName="discounts" foreignKeyName="ticket_discount_FK"/>
+            </column>
+            <column name="seating_id" type="BIGINT">
+                <constraints referencedColumnNames="id" referencedTableName="seatings" foreignKeyName="ticket_seating_FK" nullable="false"/>
+            </column>
+            <column name="event_id" type="BIGINT">
+                <constraints referencedColumnNames="id" referencedTableName="events" foreignKeyName="ticket_event_FK" nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <include file="db/changelog/seats-sample-data.xml"/>
 </databaseChangeLog>

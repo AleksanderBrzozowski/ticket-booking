@@ -15,10 +15,9 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping("${Api.BASE_URL}/events")
 class EventController(private val eventService: EventService) {
 
-    @GetMapping("/building-group")
-    fun getEvents(@RequestParam playId: Long): List<CityGroupEventsModel> {
-        return eventService.getEventsByPlayId(playId)
-                .let { CityGroupEventsModel.of(it) }
+    @GetMapping
+    fun getEvents(@RequestParam buildingId: Long, @RequestParam playId: Long): List<EventModel> {
+        return eventService.getEvents(playId = playId, buildingId = buildingId)
+                .map { EventModel.of(it) }
     }
-
 }

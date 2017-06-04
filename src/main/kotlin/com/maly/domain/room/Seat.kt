@@ -1,5 +1,6 @@
 package com.maly.domain.room
 
+import com.maly.domain.ticket.Ticket
 import javax.persistence.*
 
 /**
@@ -15,5 +16,7 @@ class Seat(
         val row: Int,
         val number: Int,
         @ManyToOne
-        val room: Room
+        val room: Room,
+        @OneToMany(mappedBy = "seat")
+        val tickets: Set<Ticket>
 )
