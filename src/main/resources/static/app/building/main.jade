@@ -1,6 +1,6 @@
-.progress.progress-striped.active(ng-if="vm.loading")
-    .progress-bar(role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%")
-div(ng-if="!vm.loading")
+.row
+    .progress.progress-striped.active(ng-if="vm.loading")
+        .progress-bar(role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%")
     .col-md-2
         p {{'BUILDING.CHOOSE_CITY' | translate}}
         ul.list-group
@@ -9,18 +9,15 @@ div(ng-if="!vm.loading")
         p {{'BUILDING.CHOOSE_BUILDING' | translate}}
         ul.list-group
             a.list-group-item(href="" ng-repeat="(buildingIndex, building) in vm.buildings" ng-class="{'active': buildingIndex == vm.chosenBuildingIndex}" ng-click="vm.chooseBuilding(buildingIndex)") {{building.name}}
-    .col-md-3(ng-if="vm.chosenBuildingIndex != -1")
-        p {{'BUILDING.CHOOSE_PLAY' | translate}}
-        .progress.progress-striped.active(ng-if="vm.loadingPlays")
-            .progress-bar(role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%")
-        div(ng-if="!vm.loadingPlays")
-            ul.list-group(ng-if="vm.plays.length > 0")
-                a.list-group-item(href="" ng-repeat="(playIndex, play) in vm.plays" ng-class="{'active': playIndex == vm.chosenPlayIndex}" ng-click="vm.choosePlay(playIndex)") {{play.name}}
-            p(ng-if="vm.plays.length === 0")
-                i {{'PLAY.NO_PLAYS' | translate}}
-    .col-md-4(ng-if="vm.chosenPlayIndex != -1")
-        p {{'BUILDING.CHOSEN_PLAY' | translate}}
-            p(ng-if="vm.play.description") {{vm.play.description}}
-            p(ng-if="!vm.play.description")
+.row(ng-if="vm.chosenBuildingIndex != -1")
+    .progress.progress-striped.active(ng-if="vm.loadingPlays")
+        .progress-bar(role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%")
+
+    div(ng-repeat="play in vm.plays")
+        .clearfix(ng-if="$index % 4 == 0")
+        .col-md-3
+            h4 {{play.name}}
+            p(ng-if="play.description") {{play.description}}
+            p(ng-if="!play.description")
                 i {{'PLAY.NO_DESCRIPTION' | translate}}
-            button.btn.btn-primary(ng-click="vm.orderPlay()") {{'CHOOSE' | translate}}
+            button.btn.btn-primary(ng-click="vm.choosePlay(play)") {{'CHOOSE' | translate}}

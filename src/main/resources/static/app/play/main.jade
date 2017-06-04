@@ -3,7 +3,7 @@
 div(ng-if="!vm.loading")
     .row
         div(ng-repeat="play in vm.plays")
-            .clearfix(ng-if="$index % 3 == 0")
+            .clearfix(ng-if="$index % 4 == 0")
             .col-md-3
                 h4 {{play.name}}
                 p(ng-if="play.description") {{play.description}}

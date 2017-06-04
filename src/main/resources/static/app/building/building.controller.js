@@ -37,7 +37,6 @@
         vm.chooseCity = chooseCity;
         vm.chooseBuilding = chooseBuilding;
         vm.choosePlay = choosePlay;
-        vm.orderPlay = orderPlay;
 
         function chooseCity(chosenCityIndex) {
             vm.chosenCityIndex = chosenCityIndex;
@@ -59,15 +58,9 @@
                 })
         }
 
-        function choosePlay(chosenPlayIndex) {
-            vm.chosenPlayIndex = chosenPlayIndex;
-            vm.play = vm.plays[vm.chosenPlayIndex];
-        }
-
-        function orderPlay() {
+        function choosePlay(play) {
             var city = vm.cities[vm.chosenCityIndex];
             var building = vm.buildings[vm.chosenBuildingIndex];
-            var play = vm.plays[vm.chosenPlayIndex];
 
             $uibModal.open({
                 templateUrl: 'app/order/main.html',
