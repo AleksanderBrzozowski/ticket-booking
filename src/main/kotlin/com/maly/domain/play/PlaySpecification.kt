@@ -32,7 +32,7 @@ class PlaySpecification private constructor(){
         fun forTitle(title: String): Specification<Play> {
             return Specification { root, _, cb ->
                 val playTitle = root.get<String>("name")
-                cb.like(cb.lower(playTitle), "$title%")
+                cb.like(cb.lower(playTitle), "${title.toLowerCase()}%")
             }
         }
 
