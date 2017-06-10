@@ -26,8 +26,6 @@
             },
             PLAY: {
                 NO_DESCRIPTION: 'Brak opisu',
-                ORDER: 'Zamów',
-                BOOK: 'Rezerwuj',
                 NO_PLAYS: 'Brak spektakli'
             },
             CHOOSE: 'Wybierz',
@@ -43,7 +41,8 @@
                 ADD_ROW: 'Dodaj wiersz',
                 REMOVE_ROW: 'Usuń wiersz',
                 CHOOSE_DISCOUNT: 'Wybierz zniżkę',
-                PRICE_SUM: 'Suma'
+                PRICE_SUM: 'Suma',
+                ORDER: 'Zamów'
             },
             SEAT: {
                 CHOOSE_SEATS: 'Wybierz miejsca',

@@ -38,6 +38,8 @@
 
         vm.rows = null;
 
+        vm.submitting=false;
+
         PlayService.getBuildings(play.id).then(function (response) {
             buildingsJson = response;
 
@@ -191,6 +193,7 @@
                 }
             });
             OrderService.reserve(vm.firstName, vm.lastName, vm.telephone, vm.chosenEvent.id, tickets);
+            vm.submitting = true;
         }
     }
 })

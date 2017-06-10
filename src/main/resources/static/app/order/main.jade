@@ -22,18 +22,19 @@
                         p {{'EVENT.CHOOSE' | translate}}
                     .progress.progress-striped.active(ng-if="vm.loadingEvents")
                         .progress-bar(role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%")
-                    ui-select(ng-attr-id="ui-select {{index}}" ng-model="vm.chosenEvent" theme="bootstrap" ng-change="vm.chooseEvent()")
+                    ui-select(ng-if="!vm.loadingEvents" ng-attr-id="ui-select {{index}}" ng-model="vm.chosenEvent" theme="bootstrap" ng-change="vm.chooseEvent()")
                         ui-select-match(placeholder="{{'EVENT.CHOOSE' | translate}}") {{$select.selected.date}}, {{'EVENT.PRICE' | translate}}: {{$select.selected.price}} {{'EVENT.CURRENCY' | translate}}
                         ui-select-choices(repeat="event in vm.events")
                             h5 {{event.date}}, {{'EVENT.PRICE' | translate}}: {{event.price}} {{'EVENT.CURRENCY' | translate}}
                             small {{event.room.name}}
-            div(ng-if="vm.chosenEvent")
-                .row.top05(ng-repeat="row in vm.rows")
+            .progress.progress-striped.active(ng-if="vm.loadingSeats")
+                .progress-bar(role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%")
+            div(ng-if="vm.chosenEvent && !vm.loadingSeats")
+                .row(ng-repeat="row in vm.rows")
                     .col-md-4
-                        p(ng-if="$index === 0") {{'SEAT.CHOOSE_SEATS' | translate}}:
-                        .progress.progress-striped.active(ng-if="vm.loadingSeats")
-                            .progress-bar(role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%")
+
                         div(ng-if="!vm.loadingSeats")
+                            p(ng-if="$index === 0") {{'SEAT.CHOOSE_SEATS' | translate}}:
                             ui-select(ng-model="vm.rows[$index].chosen" theme="bootstrap")
                                 ui-select-match(placeholder="{{'SEAT.CHOOSE_SEATS' | translate}}") {{'SEAT.ROW' | translate}}: {{$select.selected.row}}, {{'SEAT.NUMBER' | translate}}: {{$select.selected.number}}
                                 ui-select-choices(repeat="seat in vm.getPossibleSeats($index)")
@@ -73,6 +74,10 @@
                         .col-md-3
                             label(for="telephone") Nr telefonu
                             input.form-control(id="telephone" ng-model="vm.telephone")
-                    .row
+                    .row.top05
                         .col-md-3
-                            button.btn.btn-primary(ng-click="vm.submit()") zamów
+                            button.btn.btn-primary(ng-click="vm.submit()" ng-class="{'disabled': vm.submitting}")
+                                span(ng-show="!vm.submitting") {{'ORDER.ORDER' | translate}}
+                                span(ng-show="vm.submitting") {{'ORDER.ORDER' | translate}}&nbsp
+                                    i.glyphicon.glyphicon-refresh.gly-spin
+
