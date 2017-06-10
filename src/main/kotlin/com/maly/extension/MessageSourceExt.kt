@@ -8,4 +8,4 @@ import java.util.*
  */
 private val defaultLocale = Locale.getDefault()
 
-fun MessageSource.getDefaultMessage(code: String, params: Array<String> = arrayOf()) = getMessage(code, params, defaultLocale)
+fun MessageSource.getDefaultMessage(code: String, params: Array<String> = arrayOf()) = getMessage(code, params, defaultLocale)!!

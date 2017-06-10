@@ -20,7 +20,7 @@ class ExceptionHandler(private val messageSource: MessageSource) {
     fun handleBusinessException(exc: BusinessException): ResponseEntity<ErrorInfo>{
         val code = exc.messageCode
         logger.error("Business exception: [$code], system message: [${exc.systemMessage}]", exc)
-        return messageSource.getDefaultMessage(code)
+        return messageSource.getDefaultMessage(code, exc.params)
                 .let { ErrorInfo.of(message = it, code = code, type = ErrorInfo.Type.BUSINESS) }
     }
 

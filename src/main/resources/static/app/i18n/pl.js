@@ -42,13 +42,15 @@
                 REMOVE_ROW: 'Usuń wiersz',
                 CHOOSE_DISCOUNT: 'Wybierz zniżkę',
                 PRICE_SUM: 'Suma',
-                ORDER: 'Zamów'
+                ORDER: 'Zamów',
+                CHOOSE_MINIMUM_ONE_SEATING: 'Wybierz przynajmniej jedno miejsce'
             },
             SEAT: {
                 CHOOSE_SEATS: 'Wybierz miejsca',
                 ROW: 'rząd',
                 NUMBER: 'numer'
-            }
+            },
+            FIELD_REQUIRED: 'Pole jest wymagane'
         });
     }
 })();

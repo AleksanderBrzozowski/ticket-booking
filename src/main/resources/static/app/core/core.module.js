@@ -7,6 +7,7 @@
         'ui.router',
         'ui.bootstrap',
         'ngSanitize',
-        'ui.select'
+        'ui.select',
+        'ngMessages'
     ]);
 })();

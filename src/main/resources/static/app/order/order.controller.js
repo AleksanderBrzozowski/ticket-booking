@@ -38,7 +38,9 @@
 
         vm.rows = null;
 
-        vm.submitting=false;
+        vm.submitting = false;
+        vm.noSeatChosen = false;
+        vm.submitErrorMessage = null;
 
         PlayService.getBuildings(play.id).then(function (response) {
             buildingsJson = response;
@@ -77,7 +79,7 @@
         vm.submit = submit;
 
         function getPriceSum() {
-            return _.reduce(vm.rows, function(sum, object, index){
+            return _.reduce(vm.rows, function (sum, object, index) {
                 return sum + getPrice(index)
             }, 0)
         }
@@ -185,15 +187,32 @@
             };
         }
 
-        function submit() {
-            var tickets = vm.rows.map(function (row) {
-                return {
-                    seatId: row.chosen.id,
-                    discountId: row.chosenDiscount ? row.chosenDiscount.id : null
-                }
-            });
-            OrderService.reserve(vm.firstName, vm.lastName, vm.telephone, vm.chosenEvent.id, tickets);
-            vm.submitting = true;
+        function submit(isValid) {
+            if (!isValid) {
+                return;
+            }
+            var tickets = _.filter(vm.rows, function (object) {
+                return object.chosen !== null && angular.isDefined(object.chosen)
+            })
+                .map(function (row) {
+                    return {
+                        seatId: row.chosen.id,
+                        discountId: row.chosenDiscount ? row.chosenDiscount.id : null
+                    }
+                });
+
+            if (tickets.length > 0) {
+                vm.submitting = true;
+                OrderService.reserve(vm.firstName, vm.lastName, vm.telephone, vm.chosenEvent.id, tickets)
+                    .catch(function (error) {
+                        vm.submitErrorMessage = error.data.message;
+                    })
+                    .finally(function () {
+                        vm.submitting = false;
+                    });
+            }else{
+                vm.noSeatChosen = true;
+            }
         }
     }
 })
