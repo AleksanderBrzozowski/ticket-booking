@@ -6,7 +6,7 @@ import org.springframework.http.ResponseEntity
 /**
  * @author Aleksander Brzozowski
  */
-class ErrorInfo(val message: String, val code: String){
+class ErrorInfo(val message: String, val code: String, val type: String){
 
     enum class Type(val statusCode: HttpStatus){
         BUSINESS(HttpStatus.BAD_REQUEST), SYSTEM(HttpStatus.INTERNAL_SERVER_ERROR)
@@ -14,7 +14,7 @@ class ErrorInfo(val message: String, val code: String){
 
     companion object {
         fun of(message: String, code: String, type: Type): ResponseEntity<ErrorInfo> {
-            return ErrorInfo(message = message, code = code)
+            return ErrorInfo(message = message, code = code, type = type.name)
                     .let { ResponseEntity<ErrorInfo>(it, type.statusCode) }
         }
     }
