@@ -2,9 +2,7 @@ package com.maly.presentation.order
 
 import com.maly.domain.order.OrderService
 import com.maly.system.Api
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 
 /**
  * @author Aleksander Brzozowski
@@ -16,4 +14,9 @@ class OrderController(private val orderService: OrderService) {
 
     @GetMapping("/discounts")
     fun getDiscounts() = orderService.getDiscounts()
+
+    @PostMapping("/reserve")
+    fun reserve(@RequestBody model: ReservationModel) {
+        orderService.reserveEvent(model)
+    }
 }

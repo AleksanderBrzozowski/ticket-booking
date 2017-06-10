@@ -1,7 +1,7 @@
 package com.maly.domain.room
 
 import com.maly.domain.event.Event
-import com.maly.domain.ticket.Ticket
+import com.maly.domain.order.Ticket
 import org.springframework.data.jpa.domain.Specification
 
 /**

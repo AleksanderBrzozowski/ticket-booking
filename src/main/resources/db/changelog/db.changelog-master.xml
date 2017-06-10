@@ -211,4 +211,10 @@
 
     <include file="db/changelog/seats-sample-data.xml"/>
     <include file="db/changelog/discounts-sample-data.xml"/>
+
+    <changeSet id="add-sale-form" author="abrzozowski">
+        <sql>
+            INSERT INTO sale_forms(name) VALUES ('Internetowa');
+        </sql>
+    </changeSet>
 </databaseChangeLog>

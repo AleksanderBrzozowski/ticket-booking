@@ -5,6 +5,4 @@ import org.springframework.data.jpa.repository.JpaRepository
 /**
  * @author Aleksander Brzozowski
  */
-interface SaleFormRepository: JpaRepository<SaleForm, Long>{
-    fun findByName(name: String): SaleForm?
-}
+interface ReservationRepository: JpaRepository<Reservation, Long>

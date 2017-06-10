@@ -1,8 +1,6 @@
-package com.maly.domain.ticket
+package com.maly.domain.order
 
 import com.maly.domain.event.Event
-import com.maly.domain.order.Discount
-import com.maly.domain.order.SaleForm
 import com.maly.domain.room.Seat
 import javax.persistence.*
 
@@ -14,15 +12,17 @@ import javax.persistence.*
 @Table(name = "tickets")
 class Ticket(
         @Id
-        @GeneratedValue(strategy = GenerationType.IDENTITY)
-        val id: Long,
+        @GeneratedValue
+        val id: Long = 0,
         @ManyToOne
-        val discount: Discount,
+        val reservation: Reservation? = null,
         @ManyToOne
-        val sale: SaleForm,
-        @ManyToOne
+        val discount: Discount?,
         @JoinColumn(name = "seating_id")
+        @ManyToOne
         val seat: Seat,
+        @ManyToOne
+        val sale: Sale? = null,
         @ManyToOne
         val event: Event
 )

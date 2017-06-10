@@ -1,6 +1,6 @@
 package com.maly.domain.room
 
-import com.maly.domain.ticket.Ticket
+import com.maly.domain.order.Ticket
 import javax.persistence.*
 
 /**
@@ -9,7 +9,8 @@ import javax.persistence.*
 
 @Entity
 @Table(name = "seatings")
-class Seat(
+class
+Seat(
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         val id: Long,

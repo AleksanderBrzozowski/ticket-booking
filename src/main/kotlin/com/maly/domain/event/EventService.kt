@@ -25,4 +25,7 @@ class EventService(private val eventRepository: EventRepository) {
                 .let { eventRepository.findAll(it) }
     }
 
+    fun getEvent(eventId: Long): Event{
+        return eventRepository.findOne(eventId) ?: throw RuntimeException("Event with id [$eventId] not found")
+    }
 }

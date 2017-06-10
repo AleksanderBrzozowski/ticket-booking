@@ -32,6 +32,10 @@
         vm.loadingDiscounts = false;
         vm.loadingSeats = false;
 
+        vm.firstName = null;
+        vm.lastName = null;
+        vm.telephone = null;
+
         vm.rows = null;
 
         PlayService.getBuildings(play.id).then(function (response) {
@@ -58,7 +62,6 @@
         resetOrderAndBuyButtons();
 
         vm.close = close;
-
         vm.chooseBuilding = chooseBuilding;
         vm.chooseCity = chooseCity;
         vm.bookForm = bookForm;
@@ -69,6 +72,7 @@
         vm.getPossibleSeats = getPossibleSeats;
         vm.getPrice = getPrice;
         vm.getPriceSum = getPriceSum;
+        vm.submit = submit;
 
         function getPriceSum() {
             return _.reduce(vm.rows, function(sum, object, index){
@@ -139,7 +143,8 @@
 
         function addRow() {
             vm.rows.push({
-                chosen: null
+                chosen: null,
+                chosenDiscount: null
             })
         }
 
@@ -176,6 +181,16 @@
                 buy: false,
                 book: false
             };
+        }
+
+        function submit() {
+            var tickets = vm.rows.map(function (row) {
+                return {
+                    seatId: row.chosen.id,
+                    discountId: row.chosenDiscount ? row.chosenDiscount.id : null
+                }
+            });
+            OrderService.reserve(vm.firstName, vm.lastName, vm.telephone, vm.chosenEvent.id, tickets);
         }
     }
 })

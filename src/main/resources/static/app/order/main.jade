@@ -61,5 +61,18 @@
                         button.btn(ng-class="{'btn-default': !vm.order.buy, 'btn-primary' : vm.order.buy}" ng-click="vm.buyForm()") {{'ORDER.BUY' | translate}}
                         button.btn(ng-class="{'btn-default': !vm.order.book, 'btn-primary' : vm.order.book}" ng-click="vm.bookForm()") {{'ORDER.BOOK' | translate}}
                 .row(ng-if="vm.order.buy || vm.order.book")
-                    .col-md-12
-                        p Podaj dane:
+                form(name="form" ng-submit="vm.submit()")
+                div(ng-if="vm.order.book")
+                    .row
+                        .col-md-3
+                            label(for="firstName") Imię
+                            input.form-control(id="firstName" ng-model="vm.firstName")
+                        .col-md-3
+                            label(for="lastName") Nazwisko
+                            input.form-control(id="lastName" ng-model="vm.lastName")
+                        .col-md-3
+                            label(for="telephone") Nr telefonu
+                            input.form-control(id="telephone" ng-model="vm.telephone")
+                    .row
+                        .col-md-3
+                            button.btn.btn-primary(ng-click="vm.submit()") zamów

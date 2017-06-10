@@ -1,5 +1,6 @@
 package com.maly.domain.event
 
+import com.maly.domain.order.Ticket
 import com.maly.domain.play.Play
 import com.maly.domain.room.Room
 import java.math.BigDecimal
@@ -21,5 +22,7 @@ class Event(
         val play: Play,
         @ManyToOne
         val room: Room,
-        val price: BigDecimal
+        val price: BigDecimal,
+        @OneToMany(mappedBy = "event")
+        val ticket: Set<Ticket>
 )
