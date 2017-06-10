@@ -191,6 +191,10 @@
             if (!isValid) {
                 return;
             }
+
+            vm.submitErrorMessage = null;
+            vm.noSeatChosen = false;
+
             var tickets = _.filter(vm.rows, function (object) {
                 return object.chosen !== null && angular.isDefined(object.chosen)
             })
@@ -203,14 +207,21 @@
 
             if (tickets.length > 0) {
                 vm.submitting = true;
-                OrderService.reserve(vm.firstName, vm.lastName, vm.telephone, vm.chosenEvent.id, tickets)
+
+                var request = vm.order.buy ?
+                    OrderService.buy(vm.chosenEvent.id, tickets) :
+                    OrderService.reserve(vm.firstName, vm.lastName, vm.telephone, vm.chosenEvent.id, tickets);
+                request
+                    .then(function (response) {
+                        $uibModalInstance.dismiss('close');
+                    })
                     .catch(function (error) {
                         vm.submitErrorMessage = error.data.message;
                     })
                     .finally(function () {
                         vm.submitting = false;
                     });
-            }else{
+            } else {
                 vm.noSeatChosen = true;
             }
         }

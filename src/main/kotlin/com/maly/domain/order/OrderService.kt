@@ -5,6 +5,7 @@ import com.maly.domain.room.Seat
 import com.maly.domain.room.SeatRepository
 import com.maly.extension.getDefaultMessage
 import com.maly.presentation.error.BusinessException
+import com.maly.presentation.order.BuyModel
 import com.maly.presentation.order.ReservationModel
 import org.springframework.context.MessageSource
 import org.springframework.stereotype.Service
@@ -22,7 +23,8 @@ class OrderService(private val discountRepository: DiscountRepository,
                    private val seatRepository: SeatRepository,
                    private val eventService: EventService,
                    private val ticketRepository: TicketRepository,
-                   private val messageSource: MessageSource) {
+                   private val messageSource: MessageSource,
+                   private val saleRepository: SaleRepository) {
 
     companion object {
         const val SALE_FORM_NAME = "Internetowa"
@@ -33,21 +35,34 @@ class OrderService(private val discountRepository: DiscountRepository,
 
     @Transactional
     fun reserveEvent(model: ReservationModel) {
-        val saleForm = saleFormRepository.findByName(SALE_FORM_NAME)
-                ?: throw RuntimeException("SaleForm [$SALE_FORM_NAME] not found")
+        val saleForm = getSaleForm()
 
         val now = LocalDateTime.now()
         val reservation = Reservation(saleForm = saleForm, expiryDate = now.plusMinutes(EXPIRE_TIME_MINUTES), date = now,
                 firstName = model.firstName, lastName = model.lastName, telephone = model.telephone)
                 .let { reservationRepository.save(it) }
 
-        model.tickets
-                .map { it.discountId?.let { getDiscountById(it) } to getSeatById(it.seatId) }
+        model.tickets.map { it.discountId?.let { getDiscountById(it) } to getSeatById(it.seatId) }
                 .map { (discount, seat) ->
                     Ticket(reservation = reservation, seat = seat, discount = discount,
                             event = eventService.getEvent(model.eventId))
                 }.forEach { saveTicket(it) }
     }
+
+    fun buyEvent(model: BuyModel) {
+        val saleForm = getSaleForm()
+
+        val sale = Sale(saleForm = saleForm).let { saleRepository.save(it) }
+
+        model.tickets.map { it.discountId?.let { getDiscountById(it) } to getSeatById(it.seatId) }
+                .map { (discount, seat) ->
+                    Ticket(sale = sale, seat = seat, discount = discount,
+                            event = eventService.getEvent(model.eventId))
+                }.forEach { saveTicket(it) }
+    }
+
+    private fun getSaleForm() = (saleFormRepository.findByName(SALE_FORM_NAME)
+            ?: throw RuntimeException("SaleForm [$SALE_FORM_NAME] not found"))
 
     private fun getDiscountById(id: Long): Discount {
         return discountRepository.findOne(id) ?: throw RuntimeException("discount with id: [$id] not found")

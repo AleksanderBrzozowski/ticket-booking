@@ -8,7 +8,8 @@
     function OrderService(Restangular) {
         return {
             getDiscounts: getDiscounts,
-            reserve: reserve
+            reserve: reserve,
+            buy: buy
         };
 
         function getDiscounts() {
@@ -22,6 +23,13 @@
                 eventId: eventId,
                 tickets: tickets,
                 telephone: telephone
+            })
+        }
+
+        function buy(eventId, tickets) {
+            return ordersPath().all('buy').customPOST({
+                eventId: eventId,
+                tickets: tickets
             })
         }
 

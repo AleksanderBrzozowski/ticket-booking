@@ -19,4 +19,9 @@ class OrderController(private val orderService: OrderService) {
     fun reserve(@RequestBody model: ReservationModel) {
         orderService.reserveEvent(model)
     }
+
+    @PostMapping("/buy")
+    fun buy(@RequestBody model: BuyModel){
+        orderService.buyEvent(model)
+    }
 }
