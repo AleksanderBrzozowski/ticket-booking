@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity
 class ErrorInfo(val message: String, val code: String){
 
     enum class Type(val statusCode: HttpStatus){
-        BUSINESS(HttpStatus.BAD_REQUEST)
+        BUSINESS(HttpStatus.BAD_REQUEST), SYSTEM(HttpStatus.INTERNAL_SERVER_ERROR)
     }
 
     companion object {
