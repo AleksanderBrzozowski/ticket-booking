@@ -54,4 +54,5 @@ dependencies {
     runtime('com.microsoft.sqlserver:mssql-jdbc')
     compile("org.hibernate:hibernate-java8")
     compile("com.fasterxml.jackson.datatype:jackson-datatype-jsr310")
+    compile ('com.googlecode.libphonenumber:libphonenumber:8.5.1')
 }

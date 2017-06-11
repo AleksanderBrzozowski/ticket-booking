@@ -80,7 +80,7 @@
                                 .col-md-3
                                     .form-group
                                         label(for="telephone") Nr telefonu
-                                        input.form-control(name="telephone" id="telephone" ng-model="vm.telephone" required)
+                                        input.form-control(type="tel" name="telephone" id="telephone" ng-model="vm.telephone" required)
                                         div(ng-show="form.$submitted" ng-messages="form.telephone.$error" role="alert")
                                             .div(ng-message="required") {{'FIELD_REQUIRED' | translate}}
                         .alert.alert-info.alert-dismissable.top05(ng-if="vm.noSeatChosen") {{'ORDER.CHOOSE_MINIMUM_ONE_SEATING' | translate}}

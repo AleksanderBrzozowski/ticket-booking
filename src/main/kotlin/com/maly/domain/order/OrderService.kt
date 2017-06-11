@@ -1,5 +1,7 @@
 package com.maly.domain.order
 
+import com.google.i18n.phonenumbers.NumberParseException
+import com.google.i18n.phonenumbers.PhoneNumberUtil
 import com.maly.domain.event.EventService
 import com.maly.domain.order.dto.TicketDto
 import com.maly.domain.room.Seat
@@ -36,6 +38,7 @@ class OrderService(private val discountRepository: DiscountRepository,
 
     @Transactional
     fun reserveEvent(model: ReservationModel): TicketDto {
+        validatePhoneNumber(model.telephone)
         val saleForm = getSaleForm()
 
         val now = LocalDateTime.now()
@@ -87,5 +90,18 @@ class OrderService(private val discountRepository: DiscountRepository,
                 }
 
         return ticketRepository.save(ticket)
+    }
+
+    private fun validatePhoneNumber(phoneNumber: String) {
+        val instance = PhoneNumberUtil.getInstance()
+        val wrongPhoneNumber = { throw BusinessException("phoneNumber.error", arrayOf(phoneNumber)) }
+        try {
+            instance.parse(phoneNumber, "PL")
+                    .let { instance.isValidNumber(it) }
+                    .apply { if (!this) wrongPhoneNumber.invoke() }
+
+        } catch (exc: NumberParseException) {
+            wrongPhoneNumber.invoke()
+        }
     }
 }
