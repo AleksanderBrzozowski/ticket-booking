@@ -1,11 +1,9 @@
 package com.maly.presentation.event
 
 import com.maly.domain.event.Event
+import com.maly.extension.toPolishDate
 import com.maly.presentation.room.RoomModel
 import java.math.BigDecimal
-import java.time.format.DateTimeFormatter
-import java.time.format.FormatStyle
-import java.util.*
 
 /**
  * @author Aleksander Brzozowski
@@ -13,12 +11,8 @@ import java.util.*
 class EventModel(val id: Long, val date: String, val room: RoomModel, val price: BigDecimal) {
 
     companion object {
-        private val dateTimeFormatter = DateTimeFormatter
-                .ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.SHORT)
-                .withLocale(Locale("PL"))
-
         fun of(event: Event) = EventModel(
-                id = event.id, date = dateTimeFormatter.format(event.date),
+                id = event.id, date = event.date.toPolishDate(),
                 price = event.price, room = event.room.let { RoomModel.of(it) }
         )
     }

@@ -1,6 +1,7 @@
 package com.maly.domain.order
 
 import com.maly.domain.event.EventService
+import com.maly.domain.order.dto.TicketDto
 import com.maly.domain.room.Seat
 import com.maly.domain.room.SeatRepository
 import com.maly.extension.getDefaultMessage
@@ -34,7 +35,7 @@ class OrderService(private val discountRepository: DiscountRepository,
     fun getDiscounts(): List<Discount> = discountRepository.findAll()
 
     @Transactional
-    fun reserveEvent(model: ReservationModel) {
+    fun reserveEvent(model: ReservationModel): TicketDto {
         val saleForm = getSaleForm()
 
         val now = LocalDateTime.now()
@@ -44,22 +45,22 @@ class OrderService(private val discountRepository: DiscountRepository,
                 date = now, firstName = model.firstName, lastName = model.lastName, telephone = model.telephone)
                 .let { reservationRepository.save(it) }
 
-        model.tickets.map { it.discountId?.let { getDiscountById(it) } to getSeatById(it.seatId) }
-                .map { (discount, seat) ->
-                    Ticket(reservation = reservation, seat = seat, discount = discount, event = event)
-                }.forEach { saveTicket(it) }
+        return model.tickets.map { it.discountId?.let { getDiscountById(it) } to getSeatById(it.seatId) }
+                .map { (discount, seat) -> Ticket(reservation = reservation, seat = seat, discount = discount, event = event) }
+                .map { saveTicket(it) }
+                .let { TicketDto.of(it) }
     }
 
-    fun buyEvent(model: BuyModel) {
+    fun buyEvent(model: BuyModel): TicketDto {
         val saleForm = getSaleForm()
 
         val sale = Sale(saleForm = saleForm).let { saleRepository.save(it) }
 
         val event = eventService.getEvent(model.eventId)
-        model.tickets.map { it.discountId?.let { getDiscountById(it) } to getSeatById(it.seatId) }
-                .map { (discount, seat) ->
-                    Ticket(sale = sale, seat = seat, discount = discount, event = event)
-                }.forEach { saveTicket(it) }
+        return model.tickets.map { it.discountId?.let { getDiscountById(it) } to getSeatById(it.seatId) }
+                .map { (discount, seat) -> Ticket(sale = sale, seat = seat, discount = discount, event = event) }
+                .map { saveTicket(it) }
+                .let { TicketDto.of(it) }
     }
 
     private fun getSaleForm() = (saleFormRepository.findByName(SALE_FORM_NAME)
@@ -73,7 +74,7 @@ class OrderService(private val discountRepository: DiscountRepository,
         return seatRepository.findOne(id) ?: throw RuntimeException("seat with id: [$id] not found")
     }
 
-    private fun saveTicket(ticket: Ticket) {
+    private fun saveTicket(ticket: Ticket): Ticket {
         ticketRepository.findBySeatAndEvent(seat = ticket.seat, event = ticket.event)
                 ?.let { ticket.seat.let { arrayOf(it.row.toString(), it.number.toString()) } }
                 ?.let { messageSource.getDefaultMessage("seat", it) }
@@ -85,6 +86,6 @@ class OrderService(private val discountRepository: DiscountRepository,
                     )
                 }
 
-        ticketRepository.save(ticket)
+        return ticketRepository.save(ticket)
     }
 }

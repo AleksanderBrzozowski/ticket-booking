@@ -16,12 +16,15 @@ class OrderController(private val orderService: OrderService) {
     fun getDiscounts() = orderService.getDiscounts()
 
     @PostMapping("/reserve")
-    fun reserve(@RequestBody model: ReservationModel) {
-        orderService.reserveEvent(model)
+    fun reserve(@RequestBody model: ReservationModel): OrderModel {
+        return orderService.reserveEvent(model)
+                .let { OrderModel.of(it) }
+
     }
 
     @PostMapping("/buy")
-    fun buy(@RequestBody model: BuyModel){
-        orderService.buyEvent(model)
+    fun buy(@RequestBody model: BuyModel): OrderModel {
+        return orderService.buyEvent(model)
+                .let { OrderModel.of(it) }
     }
 }
