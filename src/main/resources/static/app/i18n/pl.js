@@ -43,14 +43,25 @@
                 CHOOSE_DISCOUNT: 'Wybierz zniżkę',
                 PRICE_SUM: 'Suma',
                 ORDER: 'Zamów',
-                CHOOSE_MINIMUM_ONE_SEATING: 'Wybierz przynajmniej jedno miejsce'
+                CHOOSE_MINIMUM_ONE_SEATING: 'Wybierz przynajmniej jedno miejsce',
+                SUMMARY: {
+                    TITLE: 'Podsumowanie',
+                    RESERVATION_TEXT: 'Pomyślnie zarezerwowano bilet',
+                    BUY_TEXT: 'Pomyślnie zakupiono bilet',
+                    CHOSEN_SEATS: 'Wybrane miejsca',
+                    RESERVATION_EXPIRED_DATE: 'Rezerwacja wygasa',
+                    EVENT_DATE: 'Data spektaklu',
+                    TO_PAY: 'Do zapłaty',
+                    PAID: 'Zapłacono'
+                }
             },
             SEAT: {
                 CHOOSE_SEATS: 'Wybierz miejsca',
                 ROW: 'rząd',
                 NUMBER: 'numer'
             },
-            FIELD_REQUIRED: 'Pole jest wymagane'
+            FIELD_REQUIRED: 'Pole jest wymagane',
+            OK: 'Ok'
         });
     }
 })();

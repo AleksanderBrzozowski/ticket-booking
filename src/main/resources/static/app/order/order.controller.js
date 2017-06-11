@@ -4,8 +4,8 @@
     angular.module('order')
         .controller('OrderController', OrderController);
 
-    OrderController.$inject = ['play', 'buildingId', 'city', '$uibModalInstance', 'EventService', 'PlayService', 'RoomService', 'OrderService'];
-    function OrderController(play, buildingId, city, $uibModalInstance, EventService, PlayService, RoomService, OrderService) {
+    OrderController.$inject = ['play', 'buildingId', 'city', '$uibModalInstance', 'EventService', 'PlayService', 'RoomService', 'OrderService', '$uibModal'];
+    function OrderController(play, buildingId, city, $uibModalInstance, EventService, PlayService, RoomService, OrderService, $uibModal) {
         var vm = this;
 
         var buildingsJson = null;
@@ -214,6 +214,20 @@
                 request
                     .then(function (response) {
                         $uibModalInstance.dismiss('close');
+                        $uibModal.open({
+                            templateUrl: 'app/order/summary/main.html',
+                            controller: 'OrderSummaryController',
+                            size: 'md',
+                            controllerAs: 'vm',
+                            resolve: {
+                                'orderSummary': function() {return response},
+                                'type': vm.order
+                            }
+                        }).result.catch(function(res){
+                            if (!(res === 'cancel' || res === 'backdrop click')) {
+                                throw res;
+                            }
+                        })
                     })
                     .catch(function (error) {
                         vm.submitErrorMessage = error.data.message;

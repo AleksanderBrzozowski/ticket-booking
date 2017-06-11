@@ -1,0 +1,16 @@
+.modal-content
+    .modal-header
+        button.close(type="button" data-dismiss="modal" ng-click="vm.close()") &times;
+        h4.modal-title {{'ORDER.SUMMARY.TITLE' | translate}}
+    .modal-body
+        p(ng-if="vm.type.buy") {{'ORDER.SUMMARY.BUY_TEXT' | translate}}
+        p(ng-if="vm.type.book") {{'ORDER.SUMMARY.RESERVATION_TEXT' | translate}}
+        p {{'ORDER.SUMMARY.CHOSEN_SEATS' | translate}}:
+            div(ng-repeat="seat in vm.summary.seats")
+                p - {{'SEAT.ROW' | translate}}: {{seat.row}}, {{'SEAT.NUMBER' | translate}}: {{seat.number}}
+        p {{'ORDER.SUMMARY.EVENT_DATE' | translate}}: {{vm.summary.eventDate}}
+        p(ng-if="vm.type.book") {{'ORDER.SUMMARY.RESERVATION_EXPIRED_DATE' | translate}}: {{vm.summary.expireDate}}
+        p(ng-if="vm.type.book") {{'ORDER.SUMMARY.TO_PAY' | translate}}: {{vm.summary.totalPrice}} {{'EVENT.CURRENCY' | translate}}
+        p(ng-if="vm.type.buy") {{'ORDER.SUMMARY.PAID' | translate}}: {{vm.summary.totalPrice}} {{'EVENT.CURRENCY' | translate}}
+        button.btn.btn-primary(ng-click="vm.close()") {{'OK' | translate}}
+
