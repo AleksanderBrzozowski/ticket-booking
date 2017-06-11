@@ -38,14 +38,15 @@ class OrderService(private val discountRepository: DiscountRepository,
         val saleForm = getSaleForm()
 
         val now = LocalDateTime.now()
-        val reservation = Reservation(saleForm = saleForm, expiryDate = now.plusMinutes(EXPIRE_TIME_MINUTES), date = now,
-                firstName = model.firstName, lastName = model.lastName, telephone = model.telephone)
+        val event = eventService.getEvent(model.eventId)
+
+        val reservation = Reservation(saleForm = saleForm, expiryDate = event.date.minusMinutes(EXPIRE_TIME_MINUTES),
+                date = now, firstName = model.firstName, lastName = model.lastName, telephone = model.telephone)
                 .let { reservationRepository.save(it) }
 
         model.tickets.map { it.discountId?.let { getDiscountById(it) } to getSeatById(it.seatId) }
                 .map { (discount, seat) ->
-                    Ticket(reservation = reservation, seat = seat, discount = discount,
-                            event = eventService.getEvent(model.eventId))
+                    Ticket(reservation = reservation, seat = seat, discount = discount, event = event)
                 }.forEach { saveTicket(it) }
     }
 
@@ -54,10 +55,10 @@ class OrderService(private val discountRepository: DiscountRepository,
 
         val sale = Sale(saleForm = saleForm).let { saleRepository.save(it) }
 
+        val event = eventService.getEvent(model.eventId)
         model.tickets.map { it.discountId?.let { getDiscountById(it) } to getSeatById(it.seatId) }
                 .map { (discount, seat) ->
-                    Ticket(sale = sale, seat = seat, discount = discount,
-                            event = eventService.getEvent(model.eventId))
+                    Ticket(sale = sale, seat = seat, discount = discount, event = event)
                 }.forEach { saveTicket(it) }
     }
 
