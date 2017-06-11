@@ -19,7 +19,7 @@ class TicketDto(
             val oneHundred = BigDecimal(100)
             val totalPrice = tickets.map { ticket ->
                 ticket.discount?.value
-                        ?.let { ticket.event.price.multiply(BigDecimal(it)).divide(oneHundred) }
+                        ?.let { ticket.event.price.multiply(BigDecimal(100 - it)).divide(oneHundred) }
                         ?: ticket.event.price
             }.reduce { price1, price2 -> price1.add(price2) }
 
