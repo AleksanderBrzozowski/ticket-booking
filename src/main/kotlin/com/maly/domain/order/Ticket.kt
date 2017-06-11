@@ -12,7 +12,7 @@ import javax.persistence.*
 @Table(name = "tickets")
 class Ticket(
         @Id
-        @GeneratedValue
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
         val id: Long = 0,
         @ManyToOne
         val reservation: Reservation? = null,

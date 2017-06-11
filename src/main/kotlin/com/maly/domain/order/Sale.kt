@@ -11,7 +11,7 @@ import javax.persistence.*
 @Table(name = "sales")
 class Sale(
         @Id
-        @GeneratedValue
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
         val id: Long = 0,
         val date: LocalDateTime = LocalDateTime.now(),
         @ManyToOne
